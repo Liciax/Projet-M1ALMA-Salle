@@ -1,17 +1,23 @@
 /**
  * 
  */
-package main;
+package BDD;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import main.Batiment;
+import main.Demandeur;
+import main.Materiel;
+import main.Reservation;
+import main.Salle;
+
 /**
  * @author Lenny Lucas
  *
  */
-public class BaseDeDonnée {
+public class BaseDeDonnee {
 
   private Map<String,Reservation> tableDeReservation;
   private Map<String,Batiment> tableDeBatiment;
@@ -26,7 +32,7 @@ public class BaseDeDonnée {
    * @param tableDeDemandeur
    * @param tableDeMateriel
    */
-  public BaseDeDonnée() {
+  public BaseDeDonnee() {
     this.tableDeReservation = new HashMap<String,Reservation>();
     this.tableDeBatiment = new HashMap<String,Batiment>();
     this.tableDeSalle = new HashMap<String,Salle>();
