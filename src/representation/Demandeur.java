@@ -1,17 +1,17 @@
-package main;
+package representation;
 
 import java.util.Calendar;
 import java.util.List;
 
 public class Demandeur {
 
-  private int idDemandeur;
+  private String idDemandeur;
   private String nomDemandeur;
   private OrigineDemandeur origineDemandeur;
   private TitreDemandeur titreDemandeur;
   private Adresse adresseDemandeur;
 
-  public Demandeur(int idDemandeur, String nomDemandeur, OrigineDemandeur origineDemandeur,
+  public Demandeur(String idDemandeur, String nomDemandeur, OrigineDemandeur origineDemandeur,
       TitreDemandeur titreDemandeur, Adresse adresseDemandeur) {
     this.idDemandeur = idDemandeur;
     this.nomDemandeur = nomDemandeur;
@@ -22,7 +22,7 @@ public class Demandeur {
 
   public void reserverSalle(Calendar dateDebut, Calendar dateFin, Salle salle,
       DureeReservation duree, List<Materiel> materielEnSupp) {
-    Reservation reserv = new Reservation(salle, dateDebut, dateFin, this.idDemandeur, duree);
+    // Reservation reserv = new Reservation(salle, dateDebut, dateFin, idDemandeur, duree);
     // switch (duree) {
     // case SOIREE :
     // break;
@@ -35,7 +35,7 @@ public class Demandeur {
     // }
   }
 
-  public int getIdDemandeur() {
+  public String getIdDemandeur() {
     return idDemandeur;
   }
 

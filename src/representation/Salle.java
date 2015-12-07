@@ -1,20 +1,20 @@
-package main;
+package representation;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Salle {
+public class Salle {
 
+  private String idSalle;
   private int noEtage;
   private int noSalle;
-  private int idSalle;
   private int noBat;
   private int superficie;
   private String typeSalle;
   private List<Materiel> materiauxFixes;
   private double tarif;
 
-  public Salle(int noEtage, int noSalle, int idSalle, int noBat, int superficie, String typeSalle) {
+  public Salle(int noEtage, int noSalle, String idSalle, int noBat, int superficie, String typeSalle) {
     this.noEtage = noEtage;
     this.noSalle = noSalle;
     this.idSalle = idSalle;
@@ -34,7 +34,7 @@ public abstract class Salle {
     return noSalle;
   }
 
-  public int getIdSalle() {
+  public String getIdSalle() {
     return idSalle;
   }
 

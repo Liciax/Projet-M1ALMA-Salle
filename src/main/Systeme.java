@@ -1,12 +1,27 @@
 package main;
 
-import java.util.ArrayList;
-import java.util.List;
-
+/**
+ * Classe qui intéragira avec l'utilisateur
+ */
 public class Systeme {
-  private List<Reservation> listeReservations;
-  // private ArrayList<Batiment> listeBatiments;
-  private List<Materiel> listeMaterielsMobiles;
-  private List<Demandeur> listeDemandeurs;
-  // private ArrayList<Materiel> listeMobiliersEnStock; // exemple lavabo ou canape
+
+  /*
+   * public String ajouterSalle(){}
+   * 
+   * public String supprimerSalle(){}
+   * 
+   * public String ajouterReservation(){}
+   * 
+   * public String supprimerReservation(){}
+   * 
+   * public String ajouterBatiment(){}
+   * 
+   * public String supprimerBAtiment(){}
+   * 
+   * public String ajouterDemandeur(){}
+   * 
+   * public String supprimerDemandeur(){}
+   * 
+   * etc.
+   */
 }

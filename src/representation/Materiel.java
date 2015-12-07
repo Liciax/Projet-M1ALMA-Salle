@@ -1,15 +1,15 @@
-package main;
+package representation;
 
 public class Materiel {
 
-  private Salle salle;
-  private int codeMateriel;
+  private String idSalle;
+  private String codeMateriel;
   private String nomMateriel;
   private String descrMateriel;
   private double tarifMateriel;
 
-  public Materiel(Salle salle, int codeMateriel, String nomMateriel, String descrMateriel) {
-    this.salle = salle;
+  public Materiel(String idSalle, String codeMateriel, String nomMateriel, String descrMateriel) {
+    this.idSalle = idSalle;
     this.codeMateriel = codeMateriel;
     this.nomMateriel = nomMateriel;
     this.descrMateriel = descrMateriel;

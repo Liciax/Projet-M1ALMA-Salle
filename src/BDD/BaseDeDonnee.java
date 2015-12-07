@@ -11,15 +11,16 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
-import main.Batiment;
-import main.Demandeur;
-import main.Materiel;
-import main.Reservation;
-import main.Salle;
+import representation.Batiment;
+import representation.Demandeur;
+import representation.Materiel;
+import representation.Reservation;
+import representation.Salle;
+
 
 /**
  * @author Lenny Lucas
- *
+ * 
  */
 public class BaseDeDonnee {
 
@@ -37,6 +38,7 @@ public class BaseDeDonnee {
    * @param tableDeMateriel
    */
   public BaseDeDonnee() {
+<<<<<<< Updated upstream
     this.tableDeReservation = new TreeMap<String, Reservation>();
     this.tableDeBatiment = new TreeMap<String, Batiment>();
     this.tableDeSalle = new TreeMap<String, Salle>();
@@ -217,6 +219,15 @@ public class BaseDeDonnee {
   }
 
   // ------------------------------------------------
+=======
+    this.tableDeReservation = new HashMap<String, Reservation>();
+    this.tableDeBatiment = new HashMap<String, Batiment>();
+    this.tableDeSalle = new HashMap<String, Salle>();
+    this.tableDeDemandeur = new HashMap<String, Demandeur>();
+    this.tableDeMateriel = new HashMap<String, Materiel>();
+  }
+
+>>>>>>> Stashed changes
 
 
 }
