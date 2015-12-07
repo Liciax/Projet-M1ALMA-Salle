@@ -17,10 +17,9 @@ import representation.Materiel;
 import representation.Reservation;
 import representation.Salle;
 
-
 /**
  * @author Lenny Lucas
- * 
+ *
  */
 public class BaseDeDonnee {
 
@@ -38,7 +37,6 @@ public class BaseDeDonnee {
    * @param tableDeMateriel
    */
   public BaseDeDonnee() {
-<<<<<<< Updated upstream
     this.tableDeReservation = new TreeMap<String, Reservation>();
     this.tableDeBatiment = new TreeMap<String, Batiment>();
     this.tableDeSalle = new TreeMap<String, Salle>();
@@ -65,9 +63,11 @@ public class BaseDeDonnee {
     
     Collections.sort(entries, new Comparator<Entry<String, Reservation>>() {
       public int compare(final Entry<String, Reservation> e1, final Entry<String, Reservation> e2) {
-        return e1.getHeureDebutReserv().compareTo(e2.getHeureDebutReserv());
+        return e1.getValue().getHeureDebutReserv().compareTo(e2.getValue().getHeureDebutReserv());
       }
     });
+    
+    
     
     if (tableDeReservation.isEmpty()) {
       valfin = "B10001";
@@ -219,15 +219,6 @@ public class BaseDeDonnee {
   }
 
   // ------------------------------------------------
-=======
-    this.tableDeReservation = new HashMap<String, Reservation>();
-    this.tableDeBatiment = new HashMap<String, Batiment>();
-    this.tableDeSalle = new HashMap<String, Salle>();
-    this.tableDeDemandeur = new HashMap<String, Demandeur>();
-    this.tableDeMateriel = new HashMap<String, Materiel>();
-  }
-
->>>>>>> Stashed changes
 
 
 }

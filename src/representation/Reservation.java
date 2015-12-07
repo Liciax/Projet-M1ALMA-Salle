@@ -29,5 +29,8 @@ public class Reservation {
 
   }
 
+  public Calendar getHeureDebutReserv(){
+    return null;
+  }
 
 }
