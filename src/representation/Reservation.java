@@ -29,7 +29,11 @@ public class Reservation {
 
   }
 
-  public Calendar getHeureDebutReserv(){
+  public Calendar getHeureDebutReserv() {
+    return null;
+  }
+
+  public Calendar getHeureFinReserv() {
     return null;
   }
 
