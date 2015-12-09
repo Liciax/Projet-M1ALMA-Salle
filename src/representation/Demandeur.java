@@ -9,15 +9,15 @@ public class Demandeur {
   private String nomDemandeur;
   private OrigineDemandeur origineDemandeur;
   private TitreDemandeur titreDemandeur;
-  private Adresse adresseDemandeur;
+  private String idAdresseDemandeur;
 
   public Demandeur(String idDemandeur, String nomDemandeur, OrigineDemandeur origineDemandeur,
-      TitreDemandeur titreDemandeur, Adresse adresseDemandeur) {
+      TitreDemandeur titreDemandeur, String idAdresseDemandeur) {
     this.idDemandeur = idDemandeur;
     this.nomDemandeur = nomDemandeur;
     this.origineDemandeur = origineDemandeur;
     this.titreDemandeur = titreDemandeur;
-    this.adresseDemandeur = adresseDemandeur;
+    this.idAdresseDemandeur = idAdresseDemandeur;
   }
 
   public void reserverSalle(Calendar dateDebut, Calendar dateFin, Salle salle,
@@ -51,8 +51,8 @@ public class Demandeur {
     return titreDemandeur;
   }
 
-  public Adresse getAdresseDemandeur() {
-    return adresseDemandeur;
+  public String getAdresseDemandeur() {
+    return idAdresseDemandeur;
   }
 
   // Reservation(Salle salleReservee, Calendar dateDebutReserve, Calendar dateFinReserve, Demandeur

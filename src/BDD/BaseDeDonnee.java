@@ -4,6 +4,7 @@
 package BDD;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
+import representation.Adresse;
 import representation.Batiment;
 import representation.Demandeur;
 import representation.Materiel;
@@ -28,6 +30,8 @@ public class BaseDeDonnee {
   private Map<String, Salle> tableDeSalle;
   private Map<String, Demandeur> tableDeDemandeur;
   private Map<String, Materiel> tableDeMateriel;
+  private Map<String, Adresse> tableDeAdresse;
+
 
   /**
    * @param tableDeReservation
@@ -42,6 +46,7 @@ public class BaseDeDonnee {
     this.tableDeSalle = new TreeMap<String, Salle>();
     this.tableDeDemandeur = new TreeMap<String, Demandeur>();
     this.tableDeMateriel = new TreeMap<String, Materiel>();
+    this.tableDeAdresse = new TreeMap<String, Adresse>();
   }
 
   public boolean containsKey(String key) {
@@ -56,6 +61,8 @@ public class BaseDeDonnee {
         return tableDeDemandeur.containsKey(key);
       case 'M':
         return tableDeMateriel.containsKey(key);
+      case 'A':
+        return tableDeAdresse.containsKey(key);
       default:
         return false;
     }
@@ -73,6 +80,8 @@ public class BaseDeDonnee {
         return tableDeDemandeur.get(key);
       case 'M':
         return tableDeMateriel.get(key);
+      case 'A':
+        return tableDeAdresse.get(key);
       default:
         return null;
     }
@@ -96,21 +105,22 @@ public class BaseDeDonnee {
 
     final List<Entry<String, Reservation>> entries =
         new ArrayList<Entry<String, Reservation>>(tableDeReservation.entrySet());
-    
+
     Collections.sort(entries, new Comparator<Entry<String, Reservation>>() {
       public int compare(final Entry<String, Reservation> e1, final Entry<String, Reservation> e2) {
         return e1.getValue().getHeureDebutReserv().compareTo(e2.getValue().getHeureDebutReserv());
       }
     });
-    
+
     int i = 0;
     while ((i < entries.size())
         && (value.getHeureDebutReserv().compareTo(entries.get(i).getValue().getHeureFinReserv()) >= 0)) {
       i++;// on avance jusqu'a trouver l'horaire de fin de reservation juste avant cette nouvelle
           // reservation
     }
-    if (value.getHeureFinReserv().compareTo(entries.get(i).getValue().getHeureDebutReserv()) >= 0)
-    {// pas de conflict
+    if (value.getHeureFinReserv().compareTo(entries.get(i).getValue().getHeureDebutReserv()) >= 0) {// pas
+                                                                                                    // de
+                                                                                                    // conflict
       if (tableDeReservation.isEmpty()) {
         valfin = "R10001";
       } else {
@@ -125,7 +135,7 @@ public class BaseDeDonnee {
     }
     return valfin;
   }
-  
+
   public boolean remove(String key) {
     switch (key.charAt(0)) {
       case 'R':
@@ -138,14 +148,21 @@ public class BaseDeDonnee {
         return (tableDeDemandeur.remove(key) != null);
       case 'M':
         return (tableDeMateriel.remove(key) != null);
+      case 'A':
+        return (tableDeAdresse.remove(key) != null);
       default:
         return false;
     }
   }
 
-//  public boolean removeReservation(String key) {
-//    return (tableDeReservation.remove(key) != null);
-//  }
+  public Collection<Reservation> ValueReserv() {
+    return tableDeReservation.values();
+  }
+
+
+  // public boolean removeReservation(String key) {
+  // return (tableDeReservation.remove(key) != null);
+  // }
 
   // -----------------------------------------------------------------------------------------------------------------
 
@@ -176,12 +193,16 @@ public class BaseDeDonnee {
     return valfin;
   }
 
-//  public boolean removeBatiment(String key) {
-//    return (tableDeBatiment.remove(key) != null);
-//  }
+  public Collection<Batiment> ValueBat() {
+    return tableDeBatiment.values();
+  }
+
+  // public boolean removeBatiment(String key) {
+  // return (tableDeBatiment.remove(key) != null);
+  // }
 
   // -----------------------------------------------------------------------------------------------------------------
-  
+
   // public boolean containsKeySalle(String key) {
   // return tableDeSalle.containsKey(key);
   // }
@@ -209,9 +230,13 @@ public class BaseDeDonnee {
     return valfin;
   }
 
-//  public boolean removeSalle(String key) {
-//    return (tableDeSalle.remove(key) != null);
-//  }
+  public Collection<Salle> ValueSal() {
+    return tableDeSalle.values();
+  }
+
+  // public boolean removeSalle(String key) {
+  // return (tableDeSalle.remove(key) != null);
+  // }
 
   // -----------------------------------------------------------------------------------------------------------------
 
@@ -242,9 +267,13 @@ public class BaseDeDonnee {
     return valfin;
   }
 
-//  public boolean removeDemandeur(String key) {
-//    return (tableDeDemandeur.remove(key) != null);
-//  }
+  public Collection<Demandeur> ValueDem() {
+    return tableDeDemandeur.values();
+  }
+
+  // public boolean removeDemandeur(String key) {
+  // return (tableDeDemandeur.remove(key) != null);
+  // }
 
   // -----------------------------------------------------------------------------------------------------------------
 
@@ -274,11 +303,37 @@ public class BaseDeDonnee {
     return valfin;
   }
 
-//  public boolean removeMateriel(String key) {
-//    return (tableDeMateriel.remove(key) != null);
-//  }
+  public Collection<Materiel> ValueMat() {
+    return tableDeMateriel.values();
+  }
+
+  // public boolean removeMateriel(String key) {
+  // return (tableDeMateriel.remove(key) != null);
+  // }
 
   // -----------------------------------------------------------------------------------------------------------------
 
+  public boolean ContainsValue(Adresse value) {
+    return tableDeAdresse.containsValue(value);
+  }
+
+  public String put(Adresse value) {
+    String valfin;
+    if (tableDeAdresse.isEmpty()) {
+      valfin = "A10001";
+    } else {
+      String val = ((TreeMap<String, Adresse>) tableDeAdresse).lastKey();
+      val = val.substring(1);
+      int newval = Integer.parseInt(val) + 1;
+      valfin = "A" + newval;
+    }
+
+    tableDeAdresse.put(valfin, value);
+    return valfin;
+  }
+
+  public Collection<Adresse> ValueAdr() {
+    return tableDeAdresse.values();
+  }
 
 }

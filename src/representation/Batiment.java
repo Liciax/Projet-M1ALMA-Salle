@@ -13,9 +13,9 @@ public class Batiment {
 
   private String idBat;
   private Adresse adresseBat;
-  private List<Salle> salles;
+  private List<String> salles;
 
-  public Batiment(String idBat, Adresse adresseBat, List<Salle> salles) {
+  public Batiment(String idBat, Adresse adresseBat, List<String> salles) {
     this.idBat = idBat;
     this.adresseBat = adresseBat;
     this.salles = salles;
@@ -29,7 +29,7 @@ public class Batiment {
     return adresseBat;
   }
 
-  public List<Salle> getSalles() {
+  public List<String> getSalles() {
     return salles;
   }
 
