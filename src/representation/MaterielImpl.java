@@ -1,6 +1,6 @@
 package representation;
 
-public class MaterielImpl implements Materiel{
+public class MaterielImpl implements Materiel {
 
   private String idSalle;
   private String codeMateriel;

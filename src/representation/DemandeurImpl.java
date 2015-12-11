@@ -3,7 +3,7 @@ package representation;
 import java.util.Calendar;
 import java.util.List;
 
-public class DemandeurImpl implements Demandeur{
+public class DemandeurImpl implements Demandeur {
 
   private String idDemandeur;
   private String nomDemandeur;

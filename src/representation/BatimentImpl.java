@@ -2,7 +2,7 @@ package representation;
 
 import java.util.List;
 
-public class BatimentImpl implements Batiment{
+public class BatimentImpl implements Batiment {
 
   private String idBat;
   private Adresse adresseBat;

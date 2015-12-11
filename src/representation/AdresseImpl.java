@@ -1,6 +1,6 @@
 package representation;
 
-public class AdresseImpl implements Adresse{
+public class AdresseImpl implements Adresse {
 
   private int noRue;
   private String rue;

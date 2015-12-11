@@ -9,6 +9,6 @@ package representation;
  */
 public interface Batiment {
 
-  
+
 
 }

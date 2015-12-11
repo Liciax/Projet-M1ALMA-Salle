@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class ReservationImpl implements Reservation{
+public class ReservationImpl implements Reservation {
 
   private String idSalle;
   private String idClient;
