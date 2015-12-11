@@ -1,21 +1,7 @@
 package representation;
 
-public class Materiel {
+public interface Materiel {
 
-  private String idSalle;
-  private String codeMateriel;
-  private String nomMateriel;
-  private String descrMateriel;
-  private double tarifMateriel;
-
-  public Materiel(String idSalle, String codeMateriel, String nomMateriel, String descrMateriel) {
-    this.idSalle = idSalle;
-    this.codeMateriel = codeMateriel;
-    this.nomMateriel = nomMateriel;
-    this.descrMateriel = descrMateriel;
-    // a calculer
-    this.tarifMateriel = 0;
-  }
 
 
 }
