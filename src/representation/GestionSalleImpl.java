@@ -4,7 +4,7 @@
 package representation;
 
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 import BDD.BaseDeDonnee;
@@ -16,14 +16,12 @@ import BDD.BaseDeDonnee;
 public class GestionSalleImpl implements GestionSalle {
 
 
-  private static final GestionSalleImpl instance = new GestionSalleImpl(); // une et une seule
-                                                                           // gestion de salle
   private BaseDeDonnee bdd;
   private FactorySalle factSalle;
   private List<String> listeDesClefs;
 
 
-  private GestionSalleImpl() {
+  public GestionSalleImpl() {
     this.bdd = new BaseDeDonnee();
     this.factSalle = new FactorySalleImpl();
     this.listeDesClefs = new ArrayList<String>();
@@ -34,12 +32,20 @@ public class GestionSalleImpl implements GestionSalle {
     Adresse a = factSalle.createAdresse(noRue, rue, codePostal, ville, complement);
     String key = bdd.put(a);
     listeDesClefs.add(key);
-    //vu que c'est un test, on va verif que sa a marche. tout ce qui est apres est a virer
-    System.out.println(key);
-    System.out.println(((AdresseImpl) a).getVille());
-    AdresseImpl b = (AdresseImpl)bdd.get(key);
-    System.out.println(b.getVille());
     return true;
   }
+  
+  public HashMap<String,Adresse> testAffAdresse() {
+    HashMap<String,Adresse> liste = new HashMap<String, Adresse>(); 
+    for(String s:listeDesClefs) {
+      if (s.charAt(0)=='A') {
+        liste.put(s, (Adresse) bdd.get(s));
+      }
+    }
+    return liste;
+  }
 
+  public boolean removeAdresse(String idAdr) {
+    return (bdd.remove(idAdr) || listeDesClefs.remove(idAdr));
+  }
 }

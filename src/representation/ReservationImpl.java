@@ -29,11 +29,33 @@ public class ReservationImpl implements Reservation {
 
   }
 
-  public Calendar getHeureDebutReserv() {
-    return null;
+  public String getIdSalle() {
+    return idSalle;
   }
 
-  public Calendar getHeureFinReserv() {
-    return null;
+  public String getIdClient() {
+    return idClient;
   }
+
+  public String getIdReserve() {
+    return idReserve;
+  }
+
+  public Calendar getHeureDebutReserve() {
+    return heureDebutReserve;
+  }
+
+  public Calendar getHeureFinReserve() {
+    return heureFinReserve;
+  }
+
+  public DureeReservation getDureeReservation() {
+    return dureeReservation;
+  }
+
+  public List<Materiel> getMateriauxMobiles() {
+    return materiauxMobiles;
+  }
+
+
 }

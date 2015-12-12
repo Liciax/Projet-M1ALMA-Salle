@@ -4,9 +4,9 @@ import java.util.Calendar;
 
 public interface Reservation {
 
-  Calendar getHeureFinReserv();
+  Calendar getHeureFinReserve();
 
-  Calendar getHeureDebutReserv();
+  Calendar getHeureDebutReserve();
 
 
 }

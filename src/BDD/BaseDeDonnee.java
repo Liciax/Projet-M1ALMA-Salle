@@ -17,6 +17,7 @@ import representation.Batiment;
 import representation.Demandeur;
 import representation.Materiel;
 import representation.Reservation;
+import representation.ReservationImpl;
 import representation.Salle;
 
 /**
@@ -108,19 +109,30 @@ public class BaseDeDonnee {
 
     Collections.sort(entries, new Comparator<Entry<String, Reservation>>() {
       public int compare(final Entry<String, Reservation> e1, final Entry<String, Reservation> e2) {
-        return e1.getValue().getHeureDebutReserv().compareTo(e2.getValue().getHeureDebutReserv());
+        int a =
+            ((ReservationImpl) e1.getValue()).getIdSalle().compareTo(
+                ((ReservationImpl) e2.getValue()).getIdSalle());
+        if (a != 0) {
+          return a;
+        } else {
+          return e1.getValue().getHeureDebutReserve()
+              .compareTo(e2.getValue().getHeureDebutReserve());
+        }
       }
     });
 
     int i = 0;
     while ((i < entries.size())
-        && (value.getHeureDebutReserv().compareTo(entries.get(i).getValue().getHeureFinReserv()) >= 0)) {
+        && (((ReservationImpl) value).getIdSalle() != ((ReservationImpl) entries.get(i))
+            .getIdSalle())
+        && (value.getHeureDebutReserve().compareTo(entries.get(i).getValue().getHeureFinReserve()) >= 0)) {
+
       i++;// on avance jusqu'a trouver l'horaire de fin de reservation juste avant cette nouvelle
           // reservation
     }
-    if (value.getHeureFinReserv().compareTo(entries.get(i).getValue().getHeureDebutReserv()) >= 0) {// pas
-                                                                                                    // de
-                                                                                                    // conflict
+    if ((((ReservationImpl) value).getIdSalle() != ((ReservationImpl) entries.get(i)).getIdSalle())
+        || (value.getHeureFinReserve().compareTo(entries.get(i).getValue().getHeureDebutReserve()) >= 0)) {
+      // pas de conflict ou pas de reservation 
       if (tableDeReservation.isEmpty()) {
         valfin = "R10001";
       } else {
