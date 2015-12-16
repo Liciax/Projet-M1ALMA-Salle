@@ -11,8 +11,8 @@ public class FactorySalleImpl implements FactorySalle {
     return adr;
   }
 
-  public Batiment createBatiment(String idBat, Adresse adresseBat, List<String> listIdSalles) {
-    Batiment bat = new BatimentImpl(idBat, adresseBat, listIdSalles);
+  public Batiment createBatiment(String adresseBat) {
+    Batiment bat = new BatimentImpl(adresseBat);
     return bat;
   }// liste nulle au depart? retirer idBat? changer adresseBat en string (id d'adresse)?
 
@@ -42,10 +42,11 @@ public class FactorySalleImpl implements FactorySalle {
   }
 
 
-  public Salle createSalle(int noEtage, int noSalle, String idSalle, int noBat, int superficie,
+  public Salle createSalle(int noEtage, int noSalle, String idBat, int superficie,
       String typeSalle) {
-    Salle sal = new SalleImpl(noEtage, noSalle, idSalle, noBat, superficie, typeSalle);
+    Salle sal = new SalleImpl(noEtage, noSalle, idBat, superficie, typeSalle);
     return sal;
   }// retirer idSalle, changer noBat en idBat (string)?
+
 
 }

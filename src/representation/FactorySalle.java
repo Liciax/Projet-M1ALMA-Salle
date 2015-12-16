@@ -10,7 +10,7 @@ public interface FactorySalle {
       String complement);
 
 
-  public Batiment createBatiment(String idBat, Adresse adresseBat, List<String> listIdSalles);
+  public Batiment createBatiment(String adresseBat);
 
 
   public Demandeur createDemandeur(String idDemandeur, String nomDemandeur,
@@ -25,7 +25,7 @@ public interface FactorySalle {
       Calendar dateFinReserve, String idClient, DureeReservation dureeReservation);
 
 
-  public Salle createSalle(int noEtage, int noSalle, String idSalle, int noBat, int superficie,
+  public Salle createSalle(int noEtage, int noSalle, String idBat, int superficie,
       String typeSalle);
 
 

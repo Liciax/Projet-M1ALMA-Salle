@@ -6,21 +6,19 @@ import java.util.List;
 public class SalleImpl implements Salle {
 
 
-  private String idSalle;
   private int noEtage;
   private int noSalle;
-  private int noBat;
+  private String idBat;
   private int superficie;
   private String typeSalle;
   private List<Materiel> materiauxFixes;
   private double tarif;
 
-  public SalleImpl(int noEtage, int noSalle, String idSalle, int noBat, int superficie,
+  public SalleImpl(int noEtage, int noSalle, String idBat, int superficie,
       String typeSalle) {
     this.noEtage = noEtage;
     this.noSalle = noSalle;
-    this.idSalle = idSalle;
-    this.noBat = noBat;
+    this.idBat = idBat;
     this.superficie = superficie;
     this.typeSalle = typeSalle;
     this.materiauxFixes = new ArrayList<Materiel>();
@@ -28,20 +26,21 @@ public class SalleImpl implements Salle {
     // this.tarif = tarif;
   }
 
+  public String getIdBat() {
+    return idBat;
+  }
+
+  public void setIdBat(String idBat) {
+    this.idBat = idBat;
+  }
+
+
   public int getNoEtage() {
     return noEtage;
   }
 
   public int getNoSalle() {
     return noSalle;
-  }
-
-  public String getIdSalle() {
-    return idSalle;
-  }
-
-  public int getNoBat() {
-    return noBat;
   }
 
   public int getSuperficie() {
@@ -59,6 +58,8 @@ public class SalleImpl implements Salle {
   public double getTarif() {
     return tarif;
   }
+
+
 
 
 }

@@ -50,6 +50,9 @@ public class BaseDeDonnee {
     this.tableDeAdresse = new TreeMap<String, Adresse>();
   }
 
+//---------------------------------------------------------------------//
+//-----------------------------containsKey-----------------------------//
+//---------------------------------------------------------------------//
   public boolean containsKey(String key) {
     switch (key.charAt(0)) {
       case 'R':
@@ -68,6 +71,10 @@ public class BaseDeDonnee {
         return false;
     }
   }
+  
+//---------------------------------------------------------------------//
+//---------------------------------get---------------------------------//
+//---------------------------------------------------------------------//
 
   public Object get(String key) {
     switch (key.charAt(0)) {
@@ -88,18 +95,38 @@ public class BaseDeDonnee {
     }
   }
 
+//---------------------------------------------------------------------//
+//----------------------------ContainsValue----------------------------//
+//---------------------------------------------------------------------//
 
-  // public boolean containsKeyReservation(String key) {
-  // return tableDeReservation.containsKey(key);
-  // }
-
+  
   public boolean ContainsValue(Reservation value) {
     return tableDeReservation.containsValue(value);
   }
 
-  // public Reservation GetReservation(String key) {
-  // return tableDeReservation.get(key);
-  // }
+  public boolean ContainsValue(Batiment value) {
+    return tableDeBatiment.containsValue(value);
+  }
+  
+  public boolean ContainsValue(Salle value) {
+    return tableDeSalle.containsValue(value);
+  }
+  
+  public boolean ContainsValue(Demandeur value) {
+    return tableDeDemandeur.containsValue(value);
+  }
+  
+  public boolean ContainsValue(Materiel value) {
+    return tableDeMateriel.containsValue(value);
+  }
+  
+  public boolean ContainsValue(Adresse value) {
+    return tableDeAdresse.containsValue(value);
+  }
+  
+//---------------------------------------------------------------------//
+//---------------------------------put---------------------------------//
+//---------------------------------------------------------------------// 
 
   public String put(Reservation value) {
     String valfin;
@@ -147,7 +174,119 @@ public class BaseDeDonnee {
     }
     return valfin;
   }
+  
+  public String put(Batiment value) {
+    String valfin;
+    if (tableDeBatiment.isEmpty()) {
+      valfin = "B10001";
+    } else {
+      String val = ((TreeMap<String, Batiment>) tableDeBatiment).lastKey();
+      val = val.substring(1);
+      int newval = Integer.parseInt(val) + 1;
+      valfin = "B" + newval;
+    }
 
+    tableDeBatiment.put(valfin, value);
+    return valfin;
+  }
+  
+  public String put(Salle value) {
+    String valfin;
+    if (tableDeSalle.isEmpty()) {
+      valfin = "S10001";
+    } else {
+      String val = ((TreeMap<String, Salle>) tableDeSalle).lastKey();
+      val = val.substring(1);
+      int newval = Integer.parseInt(val) + 1;
+      valfin = "S" + newval;
+    }
+
+    tableDeSalle.put(valfin, value);
+    return valfin;
+  }
+
+  public String put(Demandeur value) {
+    String valfin;
+    if (tableDeDemandeur.isEmpty()) {
+      valfin = "D10001";
+    } else {
+      String val = ((TreeMap<String, Demandeur>) tableDeDemandeur).lastKey();
+      val = val.substring(1);
+      int newval = Integer.parseInt(val) + 1;
+      valfin = "D" + newval;
+    }
+
+    tableDeDemandeur.put(valfin, value);
+    return valfin;
+  }
+  
+  public String put(Materiel value) {
+    String valfin;
+    if (tableDeMateriel.isEmpty()) {
+      valfin = "M10001";
+    } else {
+      String val = ((TreeMap<String, Materiel>) tableDeMateriel).lastKey();
+      val = val.substring(1);
+      int newval = Integer.parseInt(val) + 1;
+      valfin = "M" + newval;
+    }
+    tableDeMateriel.put(valfin, value);
+    return valfin;
+  }
+  
+  public String put(Adresse value) {
+    String valfin;
+    if (tableDeAdresse.isEmpty()) {
+      valfin = "A10001";
+    } else {
+      String val = ((TreeMap<String, Adresse>) tableDeAdresse).lastKey();
+      val = val.substring(1);
+      int newval = Integer.parseInt(val) + 1;
+      valfin = "A" + newval;
+    }
+
+    tableDeAdresse.put(valfin, value);
+    return valfin;
+  }
+  
+//---------------------------------------------------------------------//
+//-------------------------------update--------------------------------//
+//---------------------------------------------------------------------//  
+  
+  public boolean update(String key, Reservation newval)
+  {
+    return (tableDeReservation.put(key, newval) != null);
+  }  
+  
+  public boolean update(String key, Batiment newval)
+  {
+    return (tableDeBatiment.put(key, newval) != null);
+  }  
+  
+  public boolean update(String key, Salle newval)
+  {
+    return (tableDeSalle.put(key, newval) != null);
+  }  
+  
+  public boolean update(String key, Demandeur newval)
+  {
+    return (tableDeDemandeur.put(key, newval) != null);
+  }  
+  
+  public boolean update(String key, Materiel newval)
+  {
+    return (tableDeMateriel.put(key, newval) != null);
+  }
+  
+  public boolean update(String key, Adresse newval)
+  {
+    return (tableDeAdresse.put(key, newval) != null);
+  }
+  
+//---------------------------------------------------------------------//
+//-------------------------------remove--------------------------------//
+//---------------------------------------------------------------------//   
+  
   public boolean remove(String key) {
     switch (key.charAt(0)) {
       case 'R':
@@ -166,186 +305,6 @@ public class BaseDeDonnee {
         return false;
     }
   }
-
-  public Collection<Reservation> ValueReserv() {
-    return tableDeReservation.values();
-  }
-
-
-  // public boolean removeReservation(String key) {
-  // return (tableDeReservation.remove(key) != null);
-  // }
-
-  // -----------------------------------------------------------------------------------------------------------------
-
-  // public boolean containsKeyBatiment(String key) {
-  // return tableDeBatiment.containsKey(key);
-  // }
-
-  public boolean ContainsValue(Batiment value) {
-    return tableDeBatiment.containsValue(value);
-  }
-
-  // public Batiment GetBatiment(String key) {
-  // return tableDeBatiment.get(key);
-  // }
-
-  public String put(Batiment value) {
-    String valfin;
-    if (tableDeBatiment.isEmpty()) {
-      valfin = "B10001";
-    } else {
-      String val = ((TreeMap<String, Batiment>) tableDeBatiment).lastKey();
-      val = val.substring(1);
-      int newval = Integer.parseInt(val) + 1;
-      valfin = "B" + newval;
-    }
-
-    tableDeBatiment.put(valfin, value);
-    return valfin;
-  }
-
-  public Collection<Batiment> ValueBat() {
-    return tableDeBatiment.values();
-  }
-
-  // public boolean removeBatiment(String key) {
-  // return (tableDeBatiment.remove(key) != null);
-  // }
-
-  // -----------------------------------------------------------------------------------------------------------------
-
-  // public boolean containsKeySalle(String key) {
-  // return tableDeSalle.containsKey(key);
-  // }
-
-  public boolean ContainsValue(Salle value) {
-    return tableDeSalle.containsValue(value);
-  }
-
-  // public Salle GetSalle(String key) {
-  // return tableDeSalle.get(key);
-  // }
-
-  public String put(Salle value) {
-    String valfin;
-    if (tableDeSalle.isEmpty()) {
-      valfin = "S10001";
-    } else {
-      String val = ((TreeMap<String, Salle>) tableDeSalle).lastKey();
-      val = val.substring(1);
-      int newval = Integer.parseInt(val) + 1;
-      valfin = "S" + newval;
-    }
-
-    tableDeSalle.put(valfin, value);
-    return valfin;
-  }
-
-  public Collection<Salle> ValueSal() {
-    return tableDeSalle.values();
-  }
-
-  // public boolean removeSalle(String key) {
-  // return (tableDeSalle.remove(key) != null);
-  // }
-
-  // -----------------------------------------------------------------------------------------------------------------
-
-  // public boolean containsKeyDemandeur(String key) {
-  // return tableDeDemandeur.containsKey(key);
-  // }
-
-  public boolean ContainsValue(Demandeur value) {
-    return tableDeDemandeur.containsValue(value);
-  }
-
-  // public Demandeur GetDemandeur(String key) {
-  // return tableDeDemandeur.get(key);
-  // }
-
-  public String put(Demandeur value) {
-    String valfin;
-    if (tableDeDemandeur.isEmpty()) {
-      valfin = "D10001";
-    } else {
-      String val = ((TreeMap<String, Demandeur>) tableDeDemandeur).lastKey();
-      val = val.substring(1);
-      int newval = Integer.parseInt(val) + 1;
-      valfin = "D" + newval;
-    }
-
-    tableDeDemandeur.put(valfin, value);
-    return valfin;
-  }
-
-  public Collection<Demandeur> ValueDem() {
-    return tableDeDemandeur.values();
-  }
-
-  // public boolean removeDemandeur(String key) {
-  // return (tableDeDemandeur.remove(key) != null);
-  // }
-
-  // -----------------------------------------------------------------------------------------------------------------
-
-  // public boolean containsKeyMateriel(String key) {
-  // return tableDeMateriel.containsKey(key);
-  // }
-
-  public boolean ContainsValue(Materiel value) {
-    return tableDeMateriel.containsValue(value);
-  }
-
-  // public Materiel GetMateriel(String key) {
-  // return tableDeMateriel.get(key);
-  // }
-
-  public String put(Materiel value) {
-    String valfin;
-    if (tableDeMateriel.isEmpty()) {
-      valfin = "M10001";
-    } else {
-      String val = ((TreeMap<String, Materiel>) tableDeMateriel).lastKey();
-      val = val.substring(1);
-      int newval = Integer.parseInt(val) + 1;
-      valfin = "M" + newval;
-    }
-    tableDeMateriel.put(valfin, value);
-    return valfin;
-  }
-
-  public Collection<Materiel> ValueMat() {
-    return tableDeMateriel.values();
-  }
-
-  // public boolean removeMateriel(String key) {
-  // return (tableDeMateriel.remove(key) != null);
-  // }
-
-  // -----------------------------------------------------------------------------------------------------------------
-
-  public boolean ContainsValue(Adresse value) {
-    return tableDeAdresse.containsValue(value);
-  }
-
-  public String put(Adresse value) {
-    String valfin;
-    if (tableDeAdresse.isEmpty()) {
-      valfin = "A10001";
-    } else {
-      String val = ((TreeMap<String, Adresse>) tableDeAdresse).lastKey();
-      val = val.substring(1);
-      int newval = Integer.parseInt(val) + 1;
-      valfin = "A" + newval;
-    }
-
-    tableDeAdresse.put(valfin, value);
-    return valfin;
-  }
-
-  public Collection<Adresse> ValueAdr() {
-    return tableDeAdresse.values();
-  }
-
+  
+  
 }
