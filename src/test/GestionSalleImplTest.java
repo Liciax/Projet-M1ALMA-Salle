@@ -44,27 +44,26 @@ public class GestionSalleImplTest {
     assertNotNull(gsi);
   }
 
-  // @Test
-  // public void testGet() {
-  // }
+  @Test
+  public void testClefExiste() {
+    gsi.creationAdresse(0, null, 0, null, null);
+    assert gsi.clefExiste("A10001");
+  }
 
   @Test
   public void testCreationAdresse() {
-    Adresse a = new AdresseImpl(0, null, 0, null, null);
     gsi.creationAdresse(0, null, 0, null, null);
     assert gsi.getBdd().containsKey("A10001");
   }
 
   @Test
   public void testAffichageAdresse() {
-    Adresse a = new AdresseImpl(0, null, 0, null, null);
     gsi.creationAdresse(0, null, 0, null, null);
     assert gsi.affichageAdresse().containsKey("A10001");
   }
 
   @Test
   public void testRemoveAdresse() {
-    Adresse a = new AdresseImpl(0, null, 0, null, null);
     gsi.creationAdresse(0, null, 0, null, null);
     gsi.removeAdresse("A10001");
     assert !gsi.getBdd().containsKey("A10001");
@@ -157,8 +156,6 @@ public class GestionSalleImplTest {
 
   @Test
   public void testAffichageMateriaux() {
-    Materiel m = new MaterielImpl(null, null, null, 0);
-    Materiel m2 = new MaterielImpl(null, null, null, 100);
     gsi.creationMateriaux("marche", null, null, 0);
     gsi.creationMateriaux("marche_aussi", null, null, 0);
     HashMap<String, Materiel> map =
@@ -172,17 +169,12 @@ public class GestionSalleImplTest {
 
   @Test
   public void testFixerMat() {
-    // Adresse a = new AdresseImpl(0, null, 0, null, null);
     gsi.creationAdresse(0, null, 0, null, null);
     gsi.creationBatiment("A10001");
-    // Batiment b = new BatimentImpl("A10001");
     gsi.creationSalle(0, 0, 0, null);
     gsi.ajouterSalleABatiment("S10001", "B10001");
-    // Salle s = new SalleImpl(0, 0, null, 0, null)
     gsi.creationMateriaux("test", "testNom", "testDescr", 0);
     gsi.fixerMat(new GregorianCalendar(), "S10001", "M10001");
-    // gsi.fixerMat(new GregorianCalendar(), "S10001", gsi.affichageMateriaux(new
-    // GregorianCalendar(), new GregorianCalendar()));
     assert ((SalleImpl) gsi.get("S10001")).getMateriauxFixes().contains("M10001");
     assert ((MaterielImpl) gsi.get("M10001")).getType() == TypeMateriel.FIXE;
 
@@ -190,17 +182,12 @@ public class GestionSalleImplTest {
 
   @Test
   public void testLibererMat() {
-    // Adresse a = new AdresseImpl(0, null, 0, null, null);
     gsi.creationAdresse(0, null, 0, null, null);
     gsi.creationBatiment("A10001");
-    // Batiment b = new BatimentImpl("A10001");
     gsi.creationSalle(0, 0, 0, null);
     gsi.ajouterSalleABatiment("S10001", "B10001");
-    // Salle s = new SalleImpl(0, 0, null, 0, null)
     gsi.creationMateriaux("test", "testNom", "testDescr", 0);
     gsi.fixerMat(new GregorianCalendar(), "S10001", "M10001");
-    // gsi.fixerMat(new GregorianCalendar(), "S10001", gsi.affichageMateriaux(new
-    // GregorianCalendar(), new GregorianCalendar()));
     gsi.libererMat(new GregorianCalendar(), "S10001", "M10001");
     assert !((SalleImpl) gsi.get("S10001")).getMateriauxFixes().contains("M10001");
     assert ((MaterielImpl) gsi.get("M10001")).getType() == TypeMateriel.MOBILE;

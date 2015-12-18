@@ -33,6 +33,10 @@ public class GestionSalleImpl implements GestionSalle {
   public Object get(String key) {
     return bdd.get(key);
   }
+  
+  public boolean clefExiste(String key) {
+    return listeDesClefs.contains(key);
+  }
 
   // --------------------------------------------------------------------//
   // pour les adresses //

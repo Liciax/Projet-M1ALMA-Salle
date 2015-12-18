@@ -115,6 +115,7 @@ public class tempInterfaceConsole implements InterfaceGraphique {
     // System.out.print("type de la salle? : ");
     // String typeSalle = sc.next();
     String key = instance.creationSalle(noEtage, noSalle, superficie, typeSalle);
+    //if ((Batiment)instance.get(idBat))
     return instance.ajouterSalleABatiment(key, idBat);
   }
 
