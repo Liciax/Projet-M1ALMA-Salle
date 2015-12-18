@@ -1,6 +1,7 @@
 package representation;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public interface FactorySalle {
@@ -22,7 +23,7 @@ public interface FactorySalle {
 
 
   public Reservation createReservation(String salleReservee, Calendar dateDebutReserve,
-      Calendar dateFinReserve, String idClient, DureeReservation dureeReservation);
+      Calendar dateFinReserve, String idClient);
 
 
   public Salle createSalle(int noEtage, int noSalle, String idBat, int superficie, String typeSalle);

@@ -2,6 +2,9 @@ package test;
 
 import static org.junit.Assert.*;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +24,9 @@ public class TableDeReservationTest {
   @Before
   public void setUp() throws Exception {
     tabdr = new TableDeReservation();
-    res = new ReservationImpl(null, null, null, null, null);
+    Calendar cd = new GregorianCalendar(2015, 12, 5, 14, 0);
+    Calendar cf = new GregorianCalendar(2015, 12, 5, 18, 0);
+    res = new ReservationImpl("S10001", cd , cf, "D10001");
   }
 
   @After
@@ -29,37 +34,68 @@ public class TableDeReservationTest {
 
   @Test
   public void testPut() {
-    fail("Not yet implemented");
+    String key = tabdr.put(res);
+    assert tabdr.getTableRes().containsKey(key);
+  }
+  
+  @Test
+  public void testMultiplePut() {
+    String key = tabdr.put(res);
+
+    Calendar cd = new GregorianCalendar(2015, 12, 6, 14, 0);
+    Calendar cf = new GregorianCalendar(2015, 12, 6, 18, 0);
+    ReservationImpl res2 = new ReservationImpl("S10001", cd , cf, "D10001");
+    String key2 = tabdr.put(res2);
+    assert key.compareTo(key2)<0;
+  }
+  
+  @Test
+  public void testConflitPut() {
+    String key = tabdr.put(res);
+
+    Calendar cd = new GregorianCalendar(2015, 12, 5, 15, 0);
+    Calendar cf = new GregorianCalendar(2015, 12, 6, 18, 0);
+    ReservationImpl res2 = new ReservationImpl("S10001", cd , cf, "D10001");
+    String key2 = tabdr.put(res2);
+    assert key2.equals("err");
+    assert tabdr.getTableRes().size() == 1;
   }
 
   @Test
   public void testContainsKey() {
-    fail("Not yet implemented");
+    String key = tabdr.put(res);
+    assert tabdr.containsKey(key);
   }
 
   @Test
   public void testGet() {
-    fail("Not yet implemented");
+    
+    String key = tabdr.put(res);
+    assert tabdr.get(key).equals(res);
   }
 
   @Test
   public void testContainsValue() {
-    fail("Not yet implemented");
+    String key = tabdr.put(res);
+    assert tabdr.containsValue(res);
   }
 
   @Test
   public void testUpdate() {
-    fail("Not yet implemented");
+    String key = tabdr.put(res);    
+    Calendar cd = new GregorianCalendar(2015, 12, 5, 15, 0);
+    Calendar cf = new GregorianCalendar(2015, 12, 6, 18, 0);
+    ReservationImpl res2 = new ReservationImpl("S10001", cd , cf, "D10001");
+    tabdr.update(key, res2);
+    assert tabdr.containsValue(res2);
   }
 
   @Test
   public void testRemove() {
-    fail("Not yet implemented");
+    String key = tabdr.put(res);
+    tabdr.remove(key);
+    assert tabdr.getTableRes().isEmpty();
   }
 
-  @Test
-  public void testGetTableRes() {
-    fail("Not yet implemented");
-  }
-
+  
 }

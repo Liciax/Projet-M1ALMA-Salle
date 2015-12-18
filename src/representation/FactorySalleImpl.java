@@ -1,6 +1,7 @@
 package representation;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class FactorySalleImpl implements FactorySalle {
@@ -38,10 +39,9 @@ public class FactorySalleImpl implements FactorySalle {
 
 
   public Reservation createReservation(String salleReservee, Calendar dateDebutReserve,
-      Calendar dateFinReserve, String idClient, DureeReservation dureeReservation) {
+      Calendar dateFinReserve, String idClient) {
     Reservation res =
-        new ReservationImpl(salleReservee, dateDebutReserve, dateFinReserve, idClient,
-            dureeReservation);
+        new ReservationImpl(salleReservee, dateDebutReserve, dateFinReserve, idClient);
     return res;
   }
 
