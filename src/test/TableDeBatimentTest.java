@@ -33,7 +33,7 @@ public class TableDeBatimentTest {
     Batiment bat2 = new BatimentImpl("A2");
     String key2 = tb.put(bat2);
     assert tb.getTableBat().containsValue(bat2);
-    assert tb.getTableBat().containsKey(key);
+    assert tb.getTableBat().containsKey(key2);
   }
 
   @Test
@@ -60,6 +60,7 @@ public class TableDeBatimentTest {
     Batiment bat2 = new BatimentImpl("A2");
     boolean res = tb.update(key, bat2);
     assert res == true;
+    assert tb.getTableBat().get(key) == bat2;
   }
 
   @Test

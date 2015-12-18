@@ -61,4 +61,8 @@ public class TableDeSalle implements Table {
     return (tableSalle.remove(key) != null);
   }
 
+  public Map<String, Salle> getTableSalle() {
+    return tableSalle;
+  }
+
 }
