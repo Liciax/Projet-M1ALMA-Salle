@@ -14,7 +14,7 @@ public class TableDeAdresseTest {
 
   private TableDeAdresse tabda;
   private AdresseImpl adr;
-  
+
   @Before
   public void setUp() throws Exception {
     tabda = new TableDeAdresse();
@@ -35,13 +35,13 @@ public class TableDeAdresseTest {
     String key = tabda.put(adr);
     assert tabda.getTableAdresse().containsKey(key);
   }
-  
+
   @Test
   public void testMultiplePut() {
     String key = tabda.put(adr);
     AdresseImpl adr2 = new AdresseImpl(0, "lol", 0, null, null);
     String key2 = tabda.put(adr2);
-    assert key.compareTo(key2)<0;
+    assert key.compareTo(key2) < 0;
   }
 
   @Test
@@ -52,7 +52,7 @@ public class TableDeAdresseTest {
 
   @Test
   public void testGet() {
-    
+
     String key = tabda.put(adr);
     assert tabda.get(key).equals(adr);
   }
@@ -78,5 +78,5 @@ public class TableDeAdresseTest {
     assert tabda.getTableAdresse().isEmpty();
   }
 
-  
+
 }

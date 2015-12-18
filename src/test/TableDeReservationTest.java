@@ -20,13 +20,13 @@ public class TableDeReservationTest {
 
   private TableDeReservation tabdr;
   private ReservationImpl res;
-  
+
   @Before
   public void setUp() throws Exception {
     tabdr = new TableDeReservation();
     Calendar cd = new GregorianCalendar(2015, 12, 5, 14, 0);
     Calendar cf = new GregorianCalendar(2015, 12, 5, 18, 0);
-    res = new ReservationImpl("S10001", cd , cf, "D10001");
+    res = new ReservationImpl("S10001", cd, cf, "D10001");
   }
 
   @After
@@ -37,27 +37,27 @@ public class TableDeReservationTest {
     String key = tabdr.put(res);
     assert tabdr.getTableRes().containsKey(key);
   }
-  
+
   @Test
   public void testMultiplePut() {
     String key = tabdr.put(res);
     System.out.println("lol");
     Calendar cd = new GregorianCalendar(2015, 12, 6, 14, 0);
     Calendar cf = new GregorianCalendar(2015, 12, 6, 18, 0);
-    ReservationImpl res2 = new ReservationImpl("S10001", cd , cf, "D10001");
+    ReservationImpl res2 = new ReservationImpl("S10001", cd, cf, "D10001");
     System.out.println("lol2");
     String key2 = tabdr.put(res2);
-    assert key.compareTo(key2)<0;
+    assert key.compareTo(key2) < 0;
   }
-  
+
   @Test
   public void testConflitPut() {
     String key = tabdr.put(res);
     Calendar cd = new GregorianCalendar(2015, 12, 5, 15, 0);
     Calendar cf = new GregorianCalendar(2015, 12, 6, 18, 0);
-    ReservationImpl res2 = new ReservationImpl("S10001", cd , cf, "D10001");
+    ReservationImpl res2 = new ReservationImpl("S10001", cd, cf, "D10001");
     String key2 = tabdr.put(res2);
-    assertTrue(key2,key2.equals("err"));
+    assertTrue(key2, key2.equals("err"));
     assert tabdr.getTableRes().size() == 1;
   }
 
@@ -69,7 +69,7 @@ public class TableDeReservationTest {
 
   @Test
   public void testGet() {
-    
+
     String key = tabdr.put(res);
     assert tabdr.get(key).equals(res);
   }
@@ -82,10 +82,10 @@ public class TableDeReservationTest {
 
   @Test
   public void testUpdate() {
-    String key = tabdr.put(res);    
+    String key = tabdr.put(res);
     Calendar cd = new GregorianCalendar(2015, 12, 5, 15, 0);
     Calendar cf = new GregorianCalendar(2015, 12, 6, 18, 0);
-    ReservationImpl res2 = new ReservationImpl("S10001", cd , cf, "D10001");
+    ReservationImpl res2 = new ReservationImpl("S10001", cd, cf, "D10001");
     tabdr.update(key, res2);
     assert tabdr.containsValue(res2);
   }
@@ -97,5 +97,5 @@ public class TableDeReservationTest {
     assert tabdr.getTableRes().isEmpty();
   }
 
-  
+
 }

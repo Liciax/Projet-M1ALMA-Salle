@@ -15,7 +15,7 @@ public class TableDeBatimentTest {
   private TableDeBatiment tb;
   private Batiment bat;
   private String key;
-  
+
   @Before
   public void setUp() throws Exception {
     tb = new TableDeBatiment();
@@ -38,21 +38,21 @@ public class TableDeBatimentTest {
 
   @Test
   public void testContainsKey() {
-    assertTrue(true==tb.containsKey(key));
-    assertTrue(false==tb.containsKey("B10002"));
+    assertTrue(true == tb.containsKey(key));
+    assertTrue(false == tb.containsKey("B10002"));
     Batiment bat2 = new BatimentImpl("A2");
     String key2 = tb.put(bat2);
-    assertTrue(true==tb.containsKey(key2));
+    assertTrue(true == tb.containsKey(key2));
   }
 
   @Test
   public void testget() {
     assert tb.get(key) == tb.getTableBat().get(key);
   }
-  
+
   @Test
   public void testContainsValue() {
-    assertTrue(true==tb.containsValue(bat));
+    assertTrue(true == tb.containsValue(bat));
   }
 
   @Test

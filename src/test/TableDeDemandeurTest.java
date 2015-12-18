@@ -16,7 +16,7 @@ public class TableDeDemandeurTest {
 
   private TableDeDemandeur tabdd;
   private DemandeurImpl dem;
-  
+
   @Before
   public void setUp() throws Exception {
     tabdd = new TableDeDemandeur();
@@ -43,9 +43,9 @@ public class TableDeDemandeurTest {
     String key = tabdd.put(dem);
     DemandeurImpl dem2 = new DemandeurImpl("hello", null, null, null);
     String key2 = tabdd.put(dem2);
-    assert key.compareTo(key2)<0;
+    assert key.compareTo(key2) < 0;
   }
-  
+
   @Test
   public void testContainsKey() {
     String key = tabdd.put(dem);
@@ -54,7 +54,7 @@ public class TableDeDemandeurTest {
 
   @Test
   public void testGet() {
-    
+
     String key = tabdd.put(dem);
     assert tabdd.get(key).equals(dem);
   }
