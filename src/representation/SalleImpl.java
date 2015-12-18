@@ -14,8 +14,7 @@ public class SalleImpl implements Salle {
   private List<Materiel> materiauxFixes;
   private double tarif;
 
-  public SalleImpl(int noEtage, int noSalle, String idBat, int superficie,
-      String typeSalle) {
+  public SalleImpl(int noEtage, int noSalle, String idBat, int superficie, String typeSalle) {
     this.noEtage = noEtage;
     this.noSalle = noSalle;
     this.idBat = idBat;
@@ -58,7 +57,6 @@ public class SalleImpl implements Salle {
   public double getTarif() {
     return tarif;
   }
-
 
 
 

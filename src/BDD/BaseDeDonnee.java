@@ -50,9 +50,9 @@ public class BaseDeDonnee {
     this.tableDeAdresse = new TreeMap<String, Adresse>();
   }
 
-//---------------------------------------------------------------------//
-//-----------------------------containsKey-----------------------------//
-//---------------------------------------------------------------------//
+  // ---------------------------------------------------------------------//
+  // -----------------------------containsKey-----------------------------//
+  // ---------------------------------------------------------------------//
   public boolean containsKey(String key) {
     switch (key.charAt(0)) {
       case 'R':
@@ -71,10 +71,10 @@ public class BaseDeDonnee {
         return false;
     }
   }
-  
-//---------------------------------------------------------------------//
-//---------------------------------get---------------------------------//
-//---------------------------------------------------------------------//
+
+  // ---------------------------------------------------------------------//
+  // ---------------------------------get---------------------------------//
+  // ---------------------------------------------------------------------//
 
   public Object get(String key) {
     switch (key.charAt(0)) {
@@ -95,11 +95,11 @@ public class BaseDeDonnee {
     }
   }
 
-//---------------------------------------------------------------------//
-//----------------------------ContainsValue----------------------------//
-//---------------------------------------------------------------------//
+  // ---------------------------------------------------------------------//
+  // ----------------------------ContainsValue----------------------------//
+  // ---------------------------------------------------------------------//
 
-  
+
   public boolean ContainsValue(Reservation value) {
     return tableDeReservation.containsValue(value);
   }
@@ -107,26 +107,26 @@ public class BaseDeDonnee {
   public boolean ContainsValue(Batiment value) {
     return tableDeBatiment.containsValue(value);
   }
-  
+
   public boolean ContainsValue(Salle value) {
     return tableDeSalle.containsValue(value);
   }
-  
+
   public boolean ContainsValue(Demandeur value) {
     return tableDeDemandeur.containsValue(value);
   }
-  
+
   public boolean ContainsValue(Materiel value) {
     return tableDeMateriel.containsValue(value);
   }
-  
+
   public boolean ContainsValue(Adresse value) {
     return tableDeAdresse.containsValue(value);
   }
-  
-//---------------------------------------------------------------------//
-//---------------------------------put---------------------------------//
-//---------------------------------------------------------------------// 
+
+  // ---------------------------------------------------------------------//
+  // ---------------------------------put---------------------------------//
+  // ---------------------------------------------------------------------//
 
   public String put(Reservation value) {
     String valfin;
@@ -159,7 +159,7 @@ public class BaseDeDonnee {
     }
     if ((((ReservationImpl) value).getIdSalle() != ((ReservationImpl) entries.get(i)).getIdSalle())
         || (value.getHeureFinReserve().compareTo(entries.get(i).getValue().getHeureDebutReserve()) >= 0)) {
-      // pas de conflict ou pas de reservation 
+      // pas de conflict ou pas de reservation
       if (tableDeReservation.isEmpty()) {
         valfin = "R10001";
       } else {
@@ -174,7 +174,7 @@ public class BaseDeDonnee {
     }
     return valfin;
   }
-  
+
   public String put(Batiment value) {
     String valfin;
     if (tableDeBatiment.isEmpty()) {
@@ -189,7 +189,7 @@ public class BaseDeDonnee {
     tableDeBatiment.put(valfin, value);
     return valfin;
   }
-  
+
   public String put(Salle value) {
     String valfin;
     if (tableDeSalle.isEmpty()) {
@@ -219,7 +219,7 @@ public class BaseDeDonnee {
     tableDeDemandeur.put(valfin, value);
     return valfin;
   }
-  
+
   public String put(Materiel value) {
     String valfin;
     if (tableDeMateriel.isEmpty()) {
@@ -233,7 +233,7 @@ public class BaseDeDonnee {
     tableDeMateriel.put(valfin, value);
     return valfin;
   }
-  
+
   public String put(Adresse value) {
     String valfin;
     if (tableDeAdresse.isEmpty()) {
@@ -248,45 +248,39 @@ public class BaseDeDonnee {
     tableDeAdresse.put(valfin, value);
     return valfin;
   }
-  
-//---------------------------------------------------------------------//
-//-------------------------------update--------------------------------//
-//---------------------------------------------------------------------//  
-  
-  public boolean update(String key, Reservation newval)
-  {
+
+  // ---------------------------------------------------------------------//
+  // -------------------------------update--------------------------------//
+  // ---------------------------------------------------------------------//
+
+  public boolean update(String key, Reservation newval) {
     return (tableDeReservation.put(key, newval) != null);
-  }  
-  
-  public boolean update(String key, Batiment newval)
-  {
+  }
+
+  public boolean update(String key, Batiment newval) {
     return (tableDeBatiment.put(key, newval) != null);
-  }  
-  
-  public boolean update(String key, Salle newval)
-  {
+  }
+
+  public boolean update(String key, Salle newval) {
     return (tableDeSalle.put(key, newval) != null);
-  }  
-  
-  public boolean update(String key, Demandeur newval)
-  {
+  }
+
+  public boolean update(String key, Demandeur newval) {
     return (tableDeDemandeur.put(key, newval) != null);
-  }  
-  
-  public boolean update(String key, Materiel newval)
-  {
+  }
+
+  public boolean update(String key, Materiel newval) {
     return (tableDeMateriel.put(key, newval) != null);
   }
-  
-  public boolean update(String key, Adresse newval)
-  {
+
+  public boolean update(String key, Adresse newval) {
     return (tableDeAdresse.put(key, newval) != null);
   }
-  
-//---------------------------------------------------------------------//
-//-------------------------------remove--------------------------------//
-//---------------------------------------------------------------------//   
-  
+
+  // ---------------------------------------------------------------------//
+  // -------------------------------remove--------------------------------//
+  // ---------------------------------------------------------------------//
+
   public boolean remove(String key) {
     switch (key.charAt(0)) {
       case 'R':
@@ -305,6 +299,6 @@ public class BaseDeDonnee {
         return false;
     }
   }
-  
-  
+
+
 }

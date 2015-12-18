@@ -25,8 +25,7 @@ public interface FactorySalle {
       Calendar dateFinReserve, String idClient, DureeReservation dureeReservation);
 
 
-  public Salle createSalle(int noEtage, int noSalle, String idBat, int superficie,
-      String typeSalle);
+  public Salle createSalle(int noEtage, int noSalle, String idBat, int superficie, String typeSalle);
 
 
 
