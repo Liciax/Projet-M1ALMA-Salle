@@ -319,7 +319,9 @@ public class tempInterfaceConsole implements InterfaceGraphique {
     return resultat;
   }
   
-  public static 
+  public static boolean retirerReservation(String idReservation, String idDemandeur) {
+    return instance.removeReservation(idReservation, idDemandeur);
+  }
 
   // ((BatimentImpl) entree.getValue())
 

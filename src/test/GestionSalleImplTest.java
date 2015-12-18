@@ -240,8 +240,8 @@ public class GestionSalleImplTest {
     gsi.creationBatiment("A10001");
     gsi.creationSalle(0, 0, 0, null);
     gsi.ajouterSalleABatiment("S10001", "B10001");
-    gsi.creationReservation("S10001", new GregorianCalendar(), new GregorianCalendar(), null);
-    gsi.removeReservation("R10001");
+    gsi.creationReservation("S10001", new GregorianCalendar(), new GregorianCalendar(), "D10001");
+    gsi.removeReservation("R10001","D10001");
     assert !gsi.affichageReservation().containsKey("R10001");
   }
 
