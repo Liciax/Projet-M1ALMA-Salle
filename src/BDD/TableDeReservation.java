@@ -62,16 +62,18 @@ public class TableDeReservation implements Table {
     });
 
     int i = 0;
-    while ((i < entries.size())
-        && (((ReservationImpl) value).getIdSalle() != ((ReservationImpl) entries.get(i).getValue())
-            .getIdSalle())
-        && (((Reservation) value).getHeureDebutReserve().compareTo(entries.get(i).getValue().getHeureFinReserve()) >= 0)) {
-
+    // tant que la liste n'est pas entierement parcourue et que l'on a pas trouvé une reserv sur la même salle mais strictement avant la nouvelle reserv
+    while ((i < entries.size()-1)
+        && ((((ReservationImpl) value).getIdSalle().equals(((ReservationImpl) entries.get(i).getValue())
+            .getIdSalle()))
+        || (((Reservation) value).getHeureDebutReserve().compareTo(entries.get(i).getValue().getHeureFinReserve()) >= 0))) {
+      
       i++;// on avance jusqu'a trouver l'horaire de fin de reservation juste avant cette nouvelle
           // reservation
+
     }
     if ((((ReservationImpl) value).getIdSalle() != ((ReservationImpl) entries.get(i).getValue()).getIdSalle())
-        || (((Reservation) value).getHeureFinReserve().compareTo(entries.get(i).getValue().getHeureDebutReserve()) >= 0)) {
+        || (((Reservation) value).getHeureFinReserve().compareTo(entries.get(i).getValue().getHeureDebutReserve()) <= 0)) {
       // pas de conflict ou pas de reservation
 //      if (tableRes.isEmpty()) {
 //        valfin = "R10001";

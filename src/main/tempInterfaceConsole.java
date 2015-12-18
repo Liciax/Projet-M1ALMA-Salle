@@ -38,18 +38,18 @@ public class tempInterfaceConsole implements InterfaceGraphique {
   // pour les Adresses //
   // --------------------------------------------------------------------//
 
-  public static boolean creationAdresse() {
-    Scanner sc = new Scanner(System.in);
-    System.out.print("no de rue? : ");
-    int noRue = sc.nextInt();
-    System.out.print("nom de la rue? : ");
-    String rue = sc.next();
-    System.out.print("code postal? : ");
-    int codePostal = sc.nextInt();
-    System.out.print("nom de la ville? : ");
-    String ville = sc.next();
-    System.out.print("un complement? : ");
-    String complement = sc.next();
+  public static boolean creationAdresse(int noRue, String rue, int codePostal, String ville, String complement) {
+//    Scanner sc = new Scanner(System.in);
+//    System.out.print("no de rue? : ");
+//    int noRue = sc.nextInt();
+//    System.out.print("nom de la rue? : ");
+//    String rue = sc.next();
+//    System.out.print("code postal? : ");
+//    int codePostal = sc.nextInt();
+//    System.out.print("nom de la ville? : ");
+//    String ville = sc.next();
+//    System.out.print("un complement? : ");
+//    String complement = sc.next();
     return instance.creationAdresse(noRue, rue, codePostal, ville, complement);
   }
   

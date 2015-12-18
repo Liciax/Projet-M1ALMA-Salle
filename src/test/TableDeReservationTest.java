@@ -41,10 +41,11 @@ public class TableDeReservationTest {
   @Test
   public void testMultiplePut() {
     String key = tabdr.put(res);
-
+    System.out.println("lol");
     Calendar cd = new GregorianCalendar(2015, 12, 6, 14, 0);
     Calendar cf = new GregorianCalendar(2015, 12, 6, 18, 0);
     ReservationImpl res2 = new ReservationImpl("S10001", cd , cf, "D10001");
+    System.out.println("lol2");
     String key2 = tabdr.put(res2);
     assert key.compareTo(key2)<0;
   }
@@ -52,12 +53,11 @@ public class TableDeReservationTest {
   @Test
   public void testConflitPut() {
     String key = tabdr.put(res);
-
     Calendar cd = new GregorianCalendar(2015, 12, 5, 15, 0);
     Calendar cf = new GregorianCalendar(2015, 12, 6, 18, 0);
     ReservationImpl res2 = new ReservationImpl("S10001", cd , cf, "D10001");
     String key2 = tabdr.put(res2);
-    assert key2.equals("err");
+    assertTrue(key2,key2.equals("err"));
     assert tabdr.getTableRes().size() == 1;
   }
 
