@@ -25,6 +25,25 @@ public class TableDeBatiment implements Table {
   }
 
   /* (non-Javadoc)
+   * @see BDD.Table#put(java.lang.Object)
+   */
+  @Override
+  public String put(Object value) {
+    String valfin;
+    if (tableBat.isEmpty()) {
+      valfin = "B10001";
+    } else {
+      String val = ((TreeMap<String, Batiment>) tableBat).lastKey();
+      val = val.substring(1);
+      int newval = Integer.parseInt(val) + 1;
+      valfin = "B" + newval;
+    }
+
+    tableBat.put(valfin, (Batiment) value);
+    return valfin;
+  }
+  
+  /* (non-Javadoc)
    * @see BDD.Table#containsKey(java.lang.String)
    */
   @Override
@@ -48,24 +67,6 @@ public class TableDeBatiment implements Table {
     return tableBat.containsValue(value);
   }
 
-  /* (non-Javadoc)
-   * @see BDD.Table#put(java.lang.Object)
-   */
-  @Override
-  public String put(Object value) {
-    String valfin;
-    if (tableBat.isEmpty()) {
-      valfin = "B10001";
-    } else {
-      String val = ((TreeMap<String, Batiment>) tableBat).lastKey();
-      val = val.substring(1);
-      int newval = Integer.parseInt(val) + 1;
-      valfin = "B" + newval;
-    }
-
-    tableBat.put(valfin, (Batiment) value);
-    return valfin;
-  }
 
   /* (non-Javadoc)
    * @see BDD.Table#update(java.lang.String, java.lang.Object)

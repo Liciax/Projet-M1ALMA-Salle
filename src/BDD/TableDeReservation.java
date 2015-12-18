@@ -30,31 +30,7 @@ public class TableDeReservation implements Table {
   private TableDeReservation() {
     this.tableRes = new TreeMap<String, Reservation>();
   }
-
-  /* (non-Javadoc)
-   * @see BDD.Table#containsKey(java.lang.String)
-   */
-  @Override
-  public boolean containsKey(String key) {
-    return tableRes.containsKey(key);
-  }
-
-  /* (non-Javadoc)
-   * @see BDD.Table#get(java.lang.String)
-   */
-  @Override
-  public Object get(String key) {
-    return tableRes.get(key);
-  }
-
-  /* (non-Javadoc)
-   * @see BDD.Table#ContainsValue(java.lang.Object)
-   */
-  @Override
-  public boolean containsValue(Object value) {
-    return tableRes.containsValue(value);
-  }
-
+  
   /* (non-Javadoc)
    * @see BDD.Table#put(java.lang.Object)
    */
@@ -105,6 +81,31 @@ public class TableDeReservation implements Table {
     }
     return valfin;
   }
+
+  /* (non-Javadoc)
+   * @see BDD.Table#containsKey(java.lang.String)
+   */
+  @Override
+  public boolean containsKey(String key) {
+    return tableRes.containsKey(key);
+  }
+
+  /* (non-Javadoc)
+   * @see BDD.Table#get(java.lang.String)
+   */
+  @Override
+  public Object get(String key) {
+    return tableRes.get(key);
+  }
+
+  /* (non-Javadoc)
+   * @see BDD.Table#ContainsValue(java.lang.Object)
+   */
+  @Override
+  public boolean containsValue(Object value) {
+    return tableRes.containsValue(value);
+  }
+
 
   /* (non-Javadoc)
    * @see BDD.Table#update(java.lang.String, java.lang.Object)

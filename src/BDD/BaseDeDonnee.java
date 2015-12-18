@@ -26,12 +26,12 @@ import representation.Salle;
  */
 public class BaseDeDonnee {
 
-private TableDeReservation tableDeReservation;
-private TableDeBatiment tableDeBatiment;
-private TableDeSalle tableDeSalle;
-private TableDeDemandeur tableDeDemandeur;
-private TableDeMateriel tableDeMateriel;
-private TableDeAdresse tableDeAdresse;
+private Table tableDeReservation;
+private Table tableDeBatiment;
+private Table tableDeSalle;
+private Table tableDeDemandeur;
+private Table tableDeMateriel;
+private Table tableDeAdresse;
 
 
 public boolean containsKey(String key) {

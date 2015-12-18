@@ -19,21 +19,6 @@ public class TableDeSalle implements Table {
   }
   
   @Override
-  public boolean containsKey(String key) {
-    return tableSalle.containsKey(key);
-  }
-
-  @Override
-  public Object get(String key) {
-    return tableSalle.get(key);
-  }
-
-  @Override
-  public boolean containsValue(Object value) {
-    return tableSalle.containsValue(value);
-  }
-
-  @Override
   public String put(Object value) {
     String valfin;
     if (tableSalle.isEmpty()) {
@@ -48,6 +33,23 @@ public class TableDeSalle implements Table {
     tableSalle.put(valfin, (Salle) value);
     return valfin;
   }
+  
+  @Override
+  public boolean containsKey(String key) {
+    return tableSalle.containsKey(key);
+  }
+
+  @Override
+  public Object get(String key) {
+    return tableSalle.get(key);
+  }
+
+  @Override
+  public boolean containsValue(Object value) {
+    return tableSalle.containsValue(value);
+  }
+
+
 
   @Override
   public boolean update(String key, Object newval) {

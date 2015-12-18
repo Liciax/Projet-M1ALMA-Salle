@@ -25,6 +25,25 @@ public class TableDeDemandeur implements Table {
   }
   
   /* (non-Javadoc)
+   * @see BDD.Table#put(java.lang.Object)
+   */
+  @Override
+  public String put(Object value) {
+    String valfin;
+    if (tableDemandeur.isEmpty()) {
+      valfin = "D10001";
+    } else {
+      String val = ((TreeMap<String, Demandeur>) tableDemandeur).lastKey();
+      val = val.substring(1);
+      int newval = Integer.parseInt(val) + 1;
+      valfin = "D" + newval;
+    }
+
+    tableDemandeur.put(valfin, (Demandeur) value);
+    return valfin;
+  }
+  
+  /* (non-Javadoc)
    * @see BDD.Table#containsKey(java.lang.String)
    */
   @Override
@@ -48,24 +67,6 @@ public class TableDeDemandeur implements Table {
     return tableDemandeur.containsValue(value);
   }
 
-  /* (non-Javadoc)
-   * @see BDD.Table#put(java.lang.Object)
-   */
-  @Override
-  public String put(Object value) {
-    String valfin;
-    if (tableDemandeur.isEmpty()) {
-      valfin = "D10001";
-    } else {
-      String val = ((TreeMap<String, Demandeur>) tableDemandeur).lastKey();
-      val = val.substring(1);
-      int newval = Integer.parseInt(val) + 1;
-      valfin = "D" + newval;
-    }
-
-    tableDemandeur.put(valfin, (Demandeur) value);
-    return valfin;
-  }
 
   /* (non-Javadoc)
    * @see BDD.Table#update(java.lang.String, java.lang.Object)

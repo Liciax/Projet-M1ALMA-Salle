@@ -21,6 +21,25 @@ public class TableDeAdresse implements Table {
   }
   
   /* (non-Javadoc)
+   * @see BDD.Table#put(java.lang.Object)
+   */
+  @Override
+  public String put(Object value) {
+    String valfin;
+    if (tableAdresse.isEmpty()) {
+      valfin = "A10001";
+    } else {
+      String val = ((TreeMap<String, Adresse>) tableAdresse).lastKey();
+      val = val.substring(1);
+      int newval = Integer.parseInt(val) + 1;
+      valfin = "A" + newval;
+    }
+
+    tableAdresse.put(valfin, (Adresse) value);
+    return valfin;
+  }
+  
+  /* (non-Javadoc)
    * @see BDD.Table#containsKey(java.lang.String)
    */
   @Override
@@ -44,24 +63,7 @@ public class TableDeAdresse implements Table {
     return tableAdresse.containsValue(value);
   }
 
-  /* (non-Javadoc)
-   * @see BDD.Table#put(java.lang.Object)
-   */
-  @Override
-  public String put(Object value) {
-    String valfin;
-    if (tableAdresse.isEmpty()) {
-      valfin = "A10001";
-    } else {
-      String val = ((TreeMap<String, Adresse>) tableAdresse).lastKey();
-      val = val.substring(1);
-      int newval = Integer.parseInt(val) + 1;
-      valfin = "A" + newval;
-    }
 
-    tableAdresse.put(valfin, (Adresse) value);
-    return valfin;
-  }
 
   /* (non-Javadoc)
    * @see BDD.Table#update(java.lang.String, java.lang.Object)

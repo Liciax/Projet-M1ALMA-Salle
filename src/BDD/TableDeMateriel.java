@@ -26,22 +26,6 @@ public class TableDeMateriel implements Table {
   }
 
   /* (non-Javadoc)
-   * @see BDD.Table#get(java.lang.String)
-   */
-  @Override
-  public Object get(String key) {
-    return tableMateriel.get(key);
-  }
-
-  /* (non-Javadoc)
-   * @see BDD.Table#ContainsValue(java.lang.Object)
-   */
-  @Override
-  public boolean containsValue(Object value) {
-    return tableMateriel.containsValue(value);
-  }
-
-  /* (non-Javadoc)
    * @see BDD.Table#put(java.lang.Object)
    */
   @Override
@@ -57,6 +41,22 @@ public class TableDeMateriel implements Table {
     }
     tableMateriel.put(valfin, (Materiel) value);
     return valfin;
+  }
+  
+  /* (non-Javadoc)
+   * @see BDD.Table#get(java.lang.String)
+   */
+  @Override
+  public Object get(String key) {
+    return tableMateriel.get(key);
+  }
+
+  /* (non-Javadoc)
+   * @see BDD.Table#ContainsValue(java.lang.Object)
+   */
+  @Override
+  public boolean containsValue(Object value) {
+    return tableMateriel.containsValue(value);
   }
 
   /* (non-Javadoc)
