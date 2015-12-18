@@ -13,7 +13,7 @@ public interface FactorySalle {
   public Batiment createBatiment(String adresseBat);
 
 
-  public Demandeur createDemandeur(String idDemandeur, String nomDemandeur,
+  public Demandeur createDemandeur(String nomDemandeur,
       OrigineDemandeur origineDemandeur, TitreDemandeur titreDemandeur, String idAdresseDemandeur);
 
 

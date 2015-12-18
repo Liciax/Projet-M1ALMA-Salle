@@ -81,4 +81,9 @@ public class TableDeAdresse implements Table {
     return (tableAdresse.remove(key) != null);
   }
 
+  public Map<String, Adresse> getTableAdresse() {
+    return tableAdresse;
+  }
+
+  
 }

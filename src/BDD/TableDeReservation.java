@@ -27,7 +27,7 @@ public class TableDeReservation implements Table {
   /**
    * 
    */
-  private TableDeReservation() {
+  public TableDeReservation() {
     this.tableRes = new TreeMap<String, Reservation>();
   }
   
@@ -121,6 +121,10 @@ public class TableDeReservation implements Table {
   @Override
   public boolean remove(String key) {
     return (tableRes.remove(key) != null);
+  }
+
+  public Map<String, Reservation> getTableRes() {
+    return tableRes;
   }
 
 }

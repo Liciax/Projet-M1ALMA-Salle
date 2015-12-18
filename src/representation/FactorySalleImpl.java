@@ -21,10 +21,10 @@ public class FactorySalleImpl implements FactorySalle {
 //    return bat;
 //  }
 
-  public Demandeur createDemandeur(String idDemandeur, String nomDemandeur,
+  public Demandeur createDemandeur(String nomDemandeur,
       OrigineDemandeur origineDemandeur, TitreDemandeur titreDemandeur, String idAdresseDemandeur) {
     Demandeur dem =
-        new DemandeurImpl(idDemandeur, nomDemandeur, origineDemandeur, titreDemandeur,
+        new DemandeurImpl(nomDemandeur, origineDemandeur, titreDemandeur,
             idAdresseDemandeur);
     return dem;
   }// retirer idDemandeur?

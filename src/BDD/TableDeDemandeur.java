@@ -84,4 +84,10 @@ public class TableDeDemandeur implements Table {
     return (tableDemandeur.remove(key) != null);
   }
 
+  public Map<String, Demandeur> getTableDemandeur() {
+    return tableDemandeur;
+  }
+  
+  
+
 }

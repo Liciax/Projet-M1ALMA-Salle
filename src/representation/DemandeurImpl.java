@@ -5,15 +5,13 @@ import java.util.List;
 
 public class DemandeurImpl implements Demandeur {
 
-  private String idDemandeur;
   private String nomDemandeur;
   private OrigineDemandeur origineDemandeur;
   private TitreDemandeur titreDemandeur;
   private String idAdresseDemandeur;
 
-  public DemandeurImpl(String idDemandeur, String nomDemandeur, OrigineDemandeur origineDemandeur,
+  public DemandeurImpl(String nomDemandeur, OrigineDemandeur origineDemandeur,
       TitreDemandeur titreDemandeur, String idAdresseDemandeur) {
-    this.idDemandeur = idDemandeur;
     this.nomDemandeur = nomDemandeur;
     this.origineDemandeur = origineDemandeur;
     this.titreDemandeur = titreDemandeur;
@@ -34,10 +32,6 @@ public class DemandeurImpl implements Demandeur {
 //    // break;
 //    // }
 //  }
-
-  public String getIdDemandeur() {
-    return idDemandeur;
-  }
 
   public String getNomDemandeur() {
     return nomDemandeur;
