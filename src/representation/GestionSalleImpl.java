@@ -148,6 +148,7 @@ public class GestionSalleImpl implements GestionSalle {
     SalleImpl salle = (SalleImpl) bdd.get(idSalle);
     MaterielImpl mat;
     for(String s:salle.getMateriauxFixes()) {
+      
       mat = (MaterielImpl) bdd.get(s);
       mat.freeMateriel(new GregorianCalendar());
       bdd.update(s, mat);
