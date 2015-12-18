@@ -1,6 +1,8 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
@@ -11,6 +13,7 @@ import representation.AdresseImpl;
 import representation.Batiment;
 import representation.BatimentImpl;
 import representation.GestionSalleImpl;
+import representation.Materiel;
 import representation.Salle;
 import representation.SalleImpl;
 
@@ -213,16 +216,17 @@ public class tempInterfaceConsole implements InterfaceGraphique {
   // pour les Materiaux //
   // --------------------------------------------------------------------//
 
-  public static boolean creationMateriel(String idMat) {
-    return instance.creationBatiment(idAdr);
+  public static boolean creationMateriel(String codeMateriel, String nomMateriel,
+      String descrMateriel, double tarif) {
+    return instance.creationMateriaux(codeMateriel, nomMateriel, descrMateriel, tarif);
   }
 
 
-  public static List<String> affichageMateriaux() {
-    HashMap<String, Batiment> liste = instance.affichageBatiment();
+  public static List<String> affichageMateriaux(GregorianCalendar dateDeb, GregorianCalendar dateFin) {
+    HashMap<String, Materiel> liste = instance.affichageMateriaux(dateDeb, dateFin);
     List<String> resultat = new ArrayList<String>();
     int i = 0;
-    for (Entry<String, Batiment> entree : liste.entrySet()) {
+    for (Entry<String, Materiel> entree : liste.entrySet()) {
       if (entree.getValue() != null) {
         // System.out.println(i + ": ");
         // affichageBatimentUnique((BatimentImpl)entree.getValue());
@@ -234,18 +238,26 @@ public class tempInterfaceConsole implements InterfaceGraphique {
     return resultat;
   }
 
-  public static boolean retirerMateriel(String idBat) {
-    return instance.removeBatiment(idBat);
+  public static void libererMat(Calendar cd, String idSalle, String idMat) {
+    instance.libererMat(cd, idSalle, idMat);
+  }
+  
+  public static void fixerMat(Calendar cd, String idSalle, String idMat) {
+    instance.fixerMat(cd, idSalle, idMat);
+  }
+  
+  public static void retirerMateriel(String idMat) {
+    instance.removeMateriaux(idMat);
   }
 
-  // ((BatimentImpl) entree.getValue())
+// ((BatimentImpl) entree.getValue())
 
-  // public static void main(String[] args) {
-  // creationAdresse();
-  // affichageAdresses();
-  // creationBatiment();
-  // affichageBatiments();
-  //
-  // }
+ public static void main(String[] args) {
+ creationAdresse(0, null, 0, null, null);
+ //affichageAdresses();
+ creationBatiment(affichageAdresses().get(0));
+ //affichageBatiments();
+
+ }
 
 }

@@ -161,12 +161,11 @@ public class GestionSalleImpl implements GestionSalle {
   // pour les Materiaux //
   // --------------------------------------------------------------------//
 
-  public String creationMateriaux(String codeMateriel, String nomMateriel,
+  public boolean creationMateriaux(String codeMateriel, String nomMateriel,
       String descrMateriel, double tarif) {
     Materiel s = factSalle.createMateriel(codeMateriel, nomMateriel, descrMateriel, tarif);
     String key = bdd.put(s);
-    listeDesClefs.add(key);
-    return key;
+    return listeDesClefs.add(key);
   }
   
 
