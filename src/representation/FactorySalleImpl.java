@@ -17,16 +17,15 @@ public class FactorySalleImpl implements FactorySalle {
     return bat;
   }
 
-//  public Batiment createBatiment(String adresseBat, List<String> list) {
-//    Batiment bat = new BatimentImpl(adresseBat,list);
-//    return bat;
-//  }
+  // public Batiment createBatiment(String adresseBat, List<String> list) {
+  // Batiment bat = new BatimentImpl(adresseBat,list);
+  // return bat;
+  // }
 
-  public Demandeur createDemandeur(String nomDemandeur,
-      OrigineDemandeur origineDemandeur, TitreDemandeur titreDemandeur, String idAdresseDemandeur) {
+  public Demandeur createDemandeur(String nomDemandeur, OrigineDemandeur origineDemandeur,
+      TitreDemandeur titreDemandeur, String idAdresseDemandeur) {
     Demandeur dem =
-        new DemandeurImpl(nomDemandeur, origineDemandeur, titreDemandeur,
-            idAdresseDemandeur);
+        new DemandeurImpl(nomDemandeur, origineDemandeur, titreDemandeur, idAdresseDemandeur);
     return dem;
   }// retirer idDemandeur?
 

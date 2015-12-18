@@ -17,7 +17,7 @@ public class TableDeMaterielTest {
   private TableDeMateriel tm;
   private Materiel materiel;
   private String key;
-  
+
   @Before
   public void setUp() throws Exception {
     tm = new TableDeMateriel();
@@ -26,16 +26,16 @@ public class TableDeMaterielTest {
   }
 
   @Test
-  public void testTableDeMateriel(){
+  public void testTableDeMateriel() {
     assertNotNull(tm);
   }
-  
+
   @Test
   public void testContainsKey() {
-    assertTrue(true==tm.containsKey(key));
+    assertTrue(true == tm.containsKey(key));
     Materiel mat2 = new MaterielImpl("s2", "m2", "vaisselle", "en porcelaine", 10);
     String key2 = tm.put(mat2);
-    assertTrue(true==tm.containsKey(key2));
+    assertTrue(true == tm.containsKey(key2));
   }
 
   @Test
@@ -53,7 +53,7 @@ public class TableDeMaterielTest {
 
   @Test
   public void testContainsValue() {
-    assertTrue(true==tm.containsValue(materiel));
+    assertTrue(true == tm.containsValue(materiel));
   }
 
   @Test

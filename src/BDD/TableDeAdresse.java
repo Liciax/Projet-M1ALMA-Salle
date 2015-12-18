@@ -15,12 +15,14 @@ import representation.Adresse;
 public class TableDeAdresse implements Table {
 
   private Map<String, Adresse> tableAdresse;
-  
+
   public TableDeAdresse() {
-    this.tableAdresse = new TreeMap<String, Adresse>(); 
+    this.tableAdresse = new TreeMap<String, Adresse>();
   }
-  
-  /* (non-Javadoc)
+
+  /*
+   * (non-Javadoc)
+   * 
    * @see BDD.Table#put(java.lang.Object)
    */
   @Override
@@ -38,8 +40,10 @@ public class TableDeAdresse implements Table {
     tableAdresse.put(valfin, (Adresse) value);
     return valfin;
   }
-  
-  /* (non-Javadoc)
+
+  /*
+   * (non-Javadoc)
+   * 
    * @see BDD.Table#containsKey(java.lang.String)
    */
   @Override
@@ -47,7 +51,9 @@ public class TableDeAdresse implements Table {
     return tableAdresse.containsKey(key);
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see BDD.Table#get(java.lang.String)
    */
   @Override
@@ -55,7 +61,9 @@ public class TableDeAdresse implements Table {
     return tableAdresse.get(key);
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see BDD.Table#ContainsValue(java.lang.Object)
    */
   @Override
@@ -65,7 +73,9 @@ public class TableDeAdresse implements Table {
 
 
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see BDD.Table#update(java.lang.String, java.lang.Object)
    */
   @Override
@@ -73,7 +83,9 @@ public class TableDeAdresse implements Table {
     return (tableAdresse.put(key, (Adresse) newval) != null);
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see BDD.Table#remove(java.lang.String)
    */
   @Override
@@ -85,5 +97,5 @@ public class TableDeAdresse implements Table {
     return tableAdresse;
   }
 
-  
+
 }

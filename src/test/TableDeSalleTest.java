@@ -14,18 +14,18 @@ import BDD.TableDeBatiment;
 import BDD.TableDeSalle;
 
 public class TableDeSalleTest {
-  
+
   private TableDeSalle ts;
   private Salle salle;
   private String key;
-  
+
   @Before
   public void setUp() throws Exception {
     ts = new TableDeSalle();
     salle = new SalleImpl(1, 1, "A1", 20, "concert");
     key = ts.put(salle);
   }
-  
+
   @Test
   public void testTableDeSalle() {
     assertNotNull(ts);
@@ -41,10 +41,10 @@ public class TableDeSalleTest {
 
   @Test
   public void testContainsKey() {
-    assertTrue(true==ts.containsKey(key));
+    assertTrue(true == ts.containsKey(key));
     Salle salle2 = new SalleImpl(1, 2, "A1", 50, "réunion");
     String key2 = ts.put(salle2);
-    assertTrue(true==ts.containsKey(key2));
+    assertTrue(true == ts.containsKey(key2));
   }
 
   @Test
@@ -54,7 +54,7 @@ public class TableDeSalleTest {
 
   @Test
   public void testContainsValue() {
-    assertTrue(true==ts.containsValue(salle));
+    assertTrue(true == ts.containsValue(salle));
   }
 
   @Test

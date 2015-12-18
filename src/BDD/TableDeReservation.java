@@ -21,29 +21,31 @@ import representation.ReservationImpl;
 public class TableDeReservation implements Table {
 
   private Map<String, Reservation> tableRes;
-  
-  
-  
+
+
+
   /**
    * 
    */
   public TableDeReservation() {
     this.tableRes = new TreeMap<String, Reservation>();
   }
-  
-  /* (non-Javadoc)
+
+  /*
+   * (non-Javadoc)
+   * 
    * @see BDD.Table#put(java.lang.Object)
    */
   @Override
   public String put(Object value) {
     String valfin;
 
-    if(tableRes.isEmpty()) {
+    if (tableRes.isEmpty()) {
       valfin = "R10001";
       tableRes.put(valfin, (Reservation) value);
       return valfin;
     }
-    
+
     final List<Entry<String, Reservation>> entries =
         new ArrayList<Entry<String, Reservation>>(tableRes.entrySet());
 
@@ -62,27 +64,30 @@ public class TableDeReservation implements Table {
     });
 
     int i = 0;
-    // tant que la liste n'est pas entierement parcourue et que l'on a pas trouvé une reserv sur la même salle mais strictement avant la nouvelle reserv
-    while ((i < entries.size()-1)
-        && ((((ReservationImpl) value).getIdSalle().equals(((ReservationImpl) entries.get(i).getValue())
-            .getIdSalle()))
-        || (((Reservation) value).getHeureDebutReserve().compareTo(entries.get(i).getValue().getHeureFinReserve()) >= 0))) {
-      
+    // tant que la liste n'est pas entierement parcourue et que l'on a pas trouvé une reserv sur la
+    // même salle mais strictement avant la nouvelle reserv
+    while ((i < entries.size() - 1)
+        && ((((ReservationImpl) value).getIdSalle().equals(((ReservationImpl) entries.get(i)
+            .getValue()).getIdSalle())) || (((Reservation) value).getHeureDebutReserve().compareTo(
+            entries.get(i).getValue().getHeureFinReserve()) >= 0))) {
+
       i++;// on avance jusqu'a trouver l'horaire de fin de reservation juste avant cette nouvelle
           // reservation
 
     }
-    if ((((ReservationImpl) value).getIdSalle() != ((ReservationImpl) entries.get(i).getValue()).getIdSalle())
-        || (((Reservation) value).getHeureFinReserve().compareTo(entries.get(i).getValue().getHeureDebutReserve()) <= 0)) {
+    if ((((ReservationImpl) value).getIdSalle() != ((ReservationImpl) entries.get(i).getValue())
+        .getIdSalle())
+        || (((Reservation) value).getHeureFinReserve().compareTo(
+            entries.get(i).getValue().getHeureDebutReserve()) <= 0)) {
       // pas de conflict ou pas de reservation
-//      if (tableRes.isEmpty()) {
-//        valfin = "R10001";
-//      } else {
-        String val = ((TreeMap<String, Reservation>) tableRes).lastKey();
-        val = val.substring(1);
-        int newval = Integer.parseInt(val) + 1;
-        valfin = "R" + newval;
-//      }
+      // if (tableRes.isEmpty()) {
+      // valfin = "R10001";
+      // } else {
+      String val = ((TreeMap<String, Reservation>) tableRes).lastKey();
+      val = val.substring(1);
+      int newval = Integer.parseInt(val) + 1;
+      valfin = "R" + newval;
+      // }
       tableRes.put(valfin, (Reservation) value);
     } else {
       valfin = "err";
@@ -90,7 +95,9 @@ public class TableDeReservation implements Table {
     return valfin;
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see BDD.Table#containsKey(java.lang.String)
    */
   @Override
@@ -98,7 +105,9 @@ public class TableDeReservation implements Table {
     return tableRes.containsKey(key);
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see BDD.Table#get(java.lang.String)
    */
   @Override
@@ -106,7 +115,9 @@ public class TableDeReservation implements Table {
     return tableRes.get(key);
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see BDD.Table#ContainsValue(java.lang.Object)
    */
   @Override
@@ -115,7 +126,9 @@ public class TableDeReservation implements Table {
   }
 
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see BDD.Table#update(java.lang.String, java.lang.Object)
    */
   @Override
@@ -123,7 +136,9 @@ public class TableDeReservation implements Table {
     return (tableRes.put(key, (Reservation) newval) != null);
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see BDD.Table#remove(java.lang.String)
    */
   @Override

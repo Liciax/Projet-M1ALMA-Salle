@@ -11,7 +11,7 @@ public class ReservationImpl implements Reservation {
   private String idClient;
   private Calendar heureDebutReserve;
   private Calendar heureFinReserve;
-//  private DureeReservation dureeReservation;
+  // private DureeReservation dureeReservation;
   private List<Materiel> materiauxMobiles;
 
   public ReservationImpl(String salleReservee, Calendar dateDebutReserve, Calendar dateFinReserve,
@@ -20,7 +20,7 @@ public class ReservationImpl implements Reservation {
     this.heureDebutReserve = dateDebutReserve;
     this.heureFinReserve = dateFinReserve; // a calculer a l'aide de durée
     this.idClient = idClient;
-//    this.dureeReservation = dureeReservation;
+    // this.dureeReservation = dureeReservation;
     this.materiauxMobiles = new ArrayList<Materiel>();
 
 
@@ -42,9 +42,9 @@ public class ReservationImpl implements Reservation {
     return heureFinReserve;
   }
 
-//  public DureeReservation getDureeReservation() {
-//    return dureeReservation;
-//  }
+  // public DureeReservation getDureeReservation() {
+  // return dureeReservation;
+  // }
 
   public List<Materiel> getMateriauxMobiles() {
     return materiauxMobiles;

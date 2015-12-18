@@ -26,7 +26,7 @@ public class GestionSalleImpl implements GestionSalle {
     this.factSalle = new FactorySalleImpl();
     this.listeDesClefs = new ArrayList<String>();
   }
-  
+
   public Object get(String key) {
     return bdd.get(key);
   }
@@ -38,8 +38,7 @@ public class GestionSalleImpl implements GestionSalle {
       String complement) {
     Adresse a = factSalle.createAdresse(noRue, rue, codePostal, ville, complement);
     String key = bdd.put(a);
-    listeDesClefs.add(key);
-    return true;
+    return listeDesClefs.add(key);
   }
 
   public HashMap<String, Adresse> affichageAdresse() {
@@ -56,16 +55,15 @@ public class GestionSalleImpl implements GestionSalle {
     return (bdd.remove(idAdr) && listeDesClefs.remove(idAdr));
   }
 
-  
+
   // --------------------------------------------------------------------//
   // pour les Batiments //
   // --------------------------------------------------------------------//
 
-  public String creationBatiment(String adresseBat) {
+  public boolean creationBatiment(String adresseBat) {
     Batiment a = factSalle.createBatiment(adresseBat);
     String key = bdd.put(a);
-    listeDesClefs.add(key);
-    return key;
+    return listeDesClefs.add(key);
   }
 
   public HashMap<String, Batiment> affichageBatiment() {
@@ -87,7 +85,7 @@ public class GestionSalleImpl implements GestionSalle {
     return (bdd.remove(idBat) && listeDesClefs.remove(idBat));
   }
 
-  public boolean ajouterSallesABatiment(String idSalle, String idBat) {
+  public boolean ajouterSalleABatiment(String idSalle, String idBat) {
     BatimentImpl bat = (BatimentImpl) bdd.get(idBat);
     SalleImpl salle = (SalleImpl) bdd.get(idSalle);
     salle.setIdBat(idBat);
@@ -95,6 +93,7 @@ public class GestionSalleImpl implements GestionSalle {
     return (bdd.update(idSalle, salle) && bdd.update(idBat, bat));
   }
 
+  
   public boolean retirerSalleABatiment(String idSalle, String idBat) {
     BatimentImpl bat = (BatimentImpl) bdd.get(idBat);
     SalleImpl salle = (SalleImpl) bdd.get(idSalle);
@@ -102,7 +101,7 @@ public class GestionSalleImpl implements GestionSalle {
     bat.removeSalle(idSalle);
     return (bdd.update(idSalle, salle) && bdd.update(idBat, bat));
   }
-  
+
 
   // --------------------------------------------------------------------//
   // pour les Salles //
@@ -118,15 +117,61 @@ public class GestionSalleImpl implements GestionSalle {
   public HashMap<String, Salle> affichageSalle() {
     HashMap<String, Salle> liste = new HashMap<String, Salle>();
     for (String s : listeDesClefs) {
-      if (s.charAt(0) == 'A') {
+      if (s.charAt(0) == 'S') {
         liste.put(s, (Salle) bdd.get(s));
       }
     }
     return liste;
   }
+  
+  public boolean ajouterMaterielASalle(String idMat, String idSalle) {
+    SalleImpl salle = (SalleImpl) bdd.get(idSalle);
+    MaterielImpl mat = (MaterielImpl) bdd.get(idMat);
+    salle.addMateriel(idMat);
+    mat.addSalle(idSalle);
+    return (bdd.update(idSalle, salle) && bdd.update(idBat, bat));
+  }
+
+  
+  public boolean retirerMaterielASalle(String idMat, String idSalle) {
+    BatimentImpl bat = (BatimentImpl) bdd.get(idBat);
+    SalleImpl salle = (SalleImpl) bdd.get(idSalle);
+    salle.setIdBat("");
+    bat.removeSalle(idSalle);
+    return (bdd.update(idSalle, salle) && bdd.update(idBat, bat));
+  }
 
   public boolean removeSalle(String idSalle) {
+    SalleImpl salle = (SalleImpl) bdd.get(idSalle);
+    retirerSalleABatiment(idSalle, salle.getIdBat());
     return (bdd.remove(idSalle) || listeDesClefs.remove(idSalle));
   }
 
+  // --------------------------------------------------------------------//
+  // pour les Materiaux //
+  // --------------------------------------------------------------------//
+
+  public String creationMateriaux(String idSalle, String codeMateriel, String nomMateriel,
+      String descrMateriel, double tarif) {
+    Materiel s = factSalle.createMateriel(idSalle, codeMateriel, nomMateriel, descrMateriel, tarif);
+    String key = bdd.put(s);
+    listeDesClefs.add(key);
+    return key;
+  }
+
+  public HashMap<String, Materiel> affichageMateriaux() {
+    HashMap<String, Materiel> liste = new HashMap<String, Materiel>();
+    for (String s : listeDesClefs) {
+      if (s.charAt(0) == 'M') {
+        liste.put(s, (Materiel) bdd.get(s));
+      }
+    }
+    return liste;
+  }
+
+  public boolean removeMateriaux(String idMat) {
+    MaterielImpl salle = (MaterielImpl) bdd.get(idMat);
+    retirerSalleABatiment(idSalle, salle.getIdBat());
+    return (bdd.remove(idSalle) || listeDesClefs.remove(idSalle));
+  }
 }
