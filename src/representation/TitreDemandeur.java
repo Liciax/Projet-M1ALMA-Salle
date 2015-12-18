@@ -1,5 +1,6 @@
 package representation;
 
+
 public class TitreDemandeur {
 
   private float tauxtitre;

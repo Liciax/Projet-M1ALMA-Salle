@@ -20,20 +20,20 @@ public class DemandeurImpl implements Demandeur {
     this.idAdresseDemandeur = idAdresseDemandeur;
   }
 
-  public void reserverSalle(Calendar dateDebut, Calendar dateFin, Salle salle,
-      DureeReservation duree, List<Materiel> materielEnSupp) {
-    // Reservation reserv = new Reservation(salle, dateDebut, dateFin, idDemandeur, duree);
-    // switch (duree) {
-    // case SOIREE :
-    // break;
-    // case DEMI_JOURNEE_MATIN :
-    // break;
-    // case DEMI_JOURNEE_APREM :
-    // break;
-    // case JOURNEE :
-    // break;
-    // }
-  }
+//  public void reserverSalle(Calendar dateDebut, Calendar dateFin, Salle salle,
+//      DureeReservation duree, List<Materiel> materielEnSupp) {
+//    // Reservation reserv = new Reservation(salle, dateDebut, dateFin, idDemandeur, duree);
+//    // switch (duree) {
+//    // case SOIREE :
+//    // break;
+//    // case DEMI_JOURNEE_MATIN :
+//    // break;
+//    // case DEMI_JOURNEE_APREM :
+//    // break;
+//    // case JOURNEE :
+//    // break;
+//    // }
+//  }
 
   public String getIdDemandeur() {
     return idDemandeur;
