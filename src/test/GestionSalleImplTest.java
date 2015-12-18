@@ -27,12 +27,13 @@ import representation.TypeMateriel;
 public class GestionSalleImplTest {
 
   private GestionSalleImpl gsi;
-//  private BaseDeDonnee bdd;
-  
+
+  // private BaseDeDonnee bdd;
+
   @Before
   public void setUp() throws Exception {
     gsi = new GestionSalleImpl();
-//    bdd = new BaseDeDonnee();
+    // bdd = new BaseDeDonnee();
   }
 
   @After
@@ -43,9 +44,9 @@ public class GestionSalleImplTest {
     assertNotNull(gsi);
   }
 
-//  @Test
-//  public void testGet() {
-//  }
+  // @Test
+  // public void testGet() {
+  // }
 
   @Test
   public void testCreationAdresse() {
@@ -97,7 +98,7 @@ public class GestionSalleImplTest {
     gsi.creationBatiment("A10001");
     gsi.creationSalle(0, 0, 0, null);
     gsi.ajouterSalleABatiment("S10001", "B10001");
-    assert ((BatimentImpl)gsi.get("B10001")).getSalles().get(0).equals("S10001");
+    assert ((BatimentImpl) gsi.get("B10001")).getSalles().get(0).equals("S10001");
   }
 
   @Test
@@ -107,9 +108,9 @@ public class GestionSalleImplTest {
     gsi.creationSalle(0, 0, 0, null);
     gsi.ajouterSalleABatiment("S10001", "B10001");
     gsi.retirerSalleABatiment("S10001", "B10001");
-    assert ((BatimentImpl)gsi.get("B10001")).getSalles().size() == 0;
+    assert ((BatimentImpl) gsi.get("B10001")).getSalles().size() == 0;
   }
-  
+
   @Test
   public void testAfficherSallesDeBatiment() {
     gsi.creationAdresse(0, null, 0, null, null);
@@ -122,20 +123,20 @@ public class GestionSalleImplTest {
   @Test
   public void testCreationSalle() {
     gsi.creationSalle(0, 0, 0, null);
-    assert ((SalleImpl)gsi.get("S10001")).getNoEtage() ==0;
+    assert ((SalleImpl) gsi.get("S10001")).getNoEtage() == 0;
   }
 
   @Test
   public void testAffichageSalle() {
     gsi.creationSalle(0, 0, 0, null);
     assert gsi.affichageSalle().containsKey("S10001");
-    
+
   }
 
   @Test
   public void testRemoveSalle() {
     gsi.creationSalle(0, 0, 0, null);
-    
+
   }
 
   @Test
@@ -150,7 +151,7 @@ public class GestionSalleImplTest {
   public void testCreationMateriaux() {
     gsi.creationMateriaux("ok", null, null, 0);
     Materiel m = ((MaterielImpl) gsi.getBdd().get("M10001"));
-    System.out.println(((MaterielImpl)m).getCodeMateriel());
+    System.out.println(((MaterielImpl) m).getCodeMateriel());
     assert ((MaterielImpl) gsi.getBdd().get("M10001")).getCodeMateriel().equals("ok");
   }
 
@@ -160,56 +161,59 @@ public class GestionSalleImplTest {
     Materiel m2 = new MaterielImpl(null, null, null, 100);
     gsi.creationMateriaux("marche", null, null, 0);
     gsi.creationMateriaux("marche_aussi", null, null, 0);
-    HashMap<String, Materiel> map = gsi.affichageMateriaux(new GregorianCalendar(), new GregorianCalendar());
-//    for(Entry<String,Materiel> ent:map.entrySet()) {
-//      System.out.println(ent.getKey());
-//    }
-    assert ((MaterielImpl)map.get("M10001")).getCodeMateriel().equals("marche");
-    assert ((MaterielImpl)map.get("M10002")).getCodeMateriel().equals("marche_aussi");
+    HashMap<String, Materiel> map =
+        gsi.affichageMateriaux(new GregorianCalendar(), new GregorianCalendar());
+    // for(Entry<String,Materiel> ent:map.entrySet()) {
+    // System.out.println(ent.getKey());
+    // }
+    assert ((MaterielImpl) map.get("M10001")).getCodeMateriel().equals("marche");
+    assert ((MaterielImpl) map.get("M10002")).getCodeMateriel().equals("marche_aussi");
   }
 
   @Test
   public void testFixerMat() {
-    //Adresse a = new AdresseImpl(0, null, 0, null, null);
+    // Adresse a = new AdresseImpl(0, null, 0, null, null);
     gsi.creationAdresse(0, null, 0, null, null);
     gsi.creationBatiment("A10001");
-    //Batiment b = new BatimentImpl("A10001");
+    // Batiment b = new BatimentImpl("A10001");
     gsi.creationSalle(0, 0, 0, null);
     gsi.ajouterSalleABatiment("S10001", "B10001");
-//    Salle s = new SalleImpl(0, 0, null, 0, null)
+    // Salle s = new SalleImpl(0, 0, null, 0, null)
     gsi.creationMateriaux("test", "testNom", "testDescr", 0);
     gsi.fixerMat(new GregorianCalendar(), "S10001", "M10001");
-    //gsi.fixerMat(new GregorianCalendar(), "S10001", gsi.affichageMateriaux(new GregorianCalendar(), new GregorianCalendar()));
+    // gsi.fixerMat(new GregorianCalendar(), "S10001", gsi.affichageMateriaux(new
+    // GregorianCalendar(), new GregorianCalendar()));
     assert ((SalleImpl) gsi.get("S10001")).getMateriauxFixes().contains("M10001");
     assert ((MaterielImpl) gsi.get("M10001")).getType() == TypeMateriel.FIXE;
-    
+
   }
 
   @Test
   public void testLibererMat() {
-    //Adresse a = new AdresseImpl(0, null, 0, null, null);
+    // Adresse a = new AdresseImpl(0, null, 0, null, null);
     gsi.creationAdresse(0, null, 0, null, null);
     gsi.creationBatiment("A10001");
-    //Batiment b = new BatimentImpl("A10001");
+    // Batiment b = new BatimentImpl("A10001");
     gsi.creationSalle(0, 0, 0, null);
     gsi.ajouterSalleABatiment("S10001", "B10001");
-//    Salle s = new SalleImpl(0, 0, null, 0, null)
+    // Salle s = new SalleImpl(0, 0, null, 0, null)
     gsi.creationMateriaux("test", "testNom", "testDescr", 0);
     gsi.fixerMat(new GregorianCalendar(), "S10001", "M10001");
-    //gsi.fixerMat(new GregorianCalendar(), "S10001", gsi.affichageMateriaux(new GregorianCalendar(), new GregorianCalendar()));
+    // gsi.fixerMat(new GregorianCalendar(), "S10001", gsi.affichageMateriaux(new
+    // GregorianCalendar(), new GregorianCalendar()));
     gsi.libererMat(new GregorianCalendar(), "S10001", "M10001");
     assert !((SalleImpl) gsi.get("S10001")).getMateriauxFixes().contains("M10001");
     assert ((MaterielImpl) gsi.get("M10001")).getType() == TypeMateriel.MOBILE;
-    
+
   }
 
   @Test
   public void testRemoveMateriaux() {
     gsi.creationMateriaux("test", "testNom", "testDescr", 0);
     gsi.removeMateriaux("M10001");
-    assert ((MaterielImpl)gsi.get("M10001")).getType() == TypeMateriel.A_DETRUIRE;
+    assert ((MaterielImpl) gsi.get("M10001")).getType() == TypeMateriel.A_DETRUIRE;
   }
-  
+
   @Test
   public void testCreationReservation() {
     gsi.creationAdresse(0, null, 0, null, null);
@@ -217,9 +221,9 @@ public class GestionSalleImplTest {
     gsi.creationSalle(0, 0, 0, null);
     gsi.ajouterSalleABatiment("S10001", "B10001");
     gsi.creationReservation("S10001", new GregorianCalendar(), new GregorianCalendar(), null);
-    assert ((ReservationImpl)gsi.get("R10001")).getIdSalle().equals("S10001");
+    assert ((ReservationImpl) gsi.get("R10001")).getIdSalle().equals("S10001");
   }
-  
+
   @Test
   public void testaAffichageReservation() {
     gsi.creationAdresse(0, null, 0, null, null);
@@ -229,7 +233,7 @@ public class GestionSalleImplTest {
     gsi.creationReservation("S10001", new GregorianCalendar(), new GregorianCalendar(), null);
     assert gsi.affichageReservation().containsKey("R10001");
   }
-  
+
   @Test
   public void testRetirerReservation() {
     gsi.creationAdresse(0, null, 0, null, null);

@@ -31,7 +31,7 @@ public class BaseDeDonnee {
   private Table tableDeDemandeur;
   private Table tableDeMateriel;
   private Table tableDeAdresse;
-  
+
   public BaseDeDonnee() {
     tableDeReservation = new TableDeReservation();
     tableDeBatiment = new TableDeBatiment();

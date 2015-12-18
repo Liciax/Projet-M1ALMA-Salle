@@ -13,8 +13,7 @@ public class MaterielImpl implements Materiel {
   private TypeMateriel type;
   private Calendar dateDeChangement;
 
-  public MaterielImpl(String codeMateriel, String nomMateriel,
-      String descrMateriel, double tarif) {
+  public MaterielImpl(String codeMateriel, String nomMateriel, String descrMateriel, double tarif) {
     this.idSalle = "";
     this.codeMateriel = codeMateriel;
     this.nomMateriel = nomMateriel;
@@ -23,9 +22,9 @@ public class MaterielImpl implements Materiel {
     this.type = TypeMateriel.MOBILE;
     this.dateDeChangement = new GregorianCalendar();
   }
-  
-  
-  
+
+
+
   public void fixMateriel(Calendar c, String idSalle) {
     this.type = TypeMateriel.FIXE;
     this.dateDeChangement = c;
@@ -37,7 +36,7 @@ public class MaterielImpl implements Materiel {
     this.dateDeChangement = c;
     this.idSalle = "";
   }
-  
+
   public void materielARetirer() {
     this.type = TypeMateriel.A_DETRUIRE;
   }
@@ -48,7 +47,6 @@ public class MaterielImpl implements Materiel {
     return idSalle;
   }
 
-  
 
 
   public void setIdSalle(String idSalle) {
@@ -84,9 +82,9 @@ public class MaterielImpl implements Materiel {
   public Calendar getDateDeChangement() {
     return dateDeChangement;
   }
-  
+
   public TypeMateriel getType() {
     return type;
   }
-  
+
 }

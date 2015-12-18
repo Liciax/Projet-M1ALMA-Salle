@@ -96,7 +96,7 @@ public class GestionSalleImpl implements GestionSalle {
     return (bdd.update(idSalle, salle) && bdd.update(idBat, bat));
   }
 
-  
+
   public boolean retirerSalleABatiment(String idSalle, String idBat) {
     BatimentImpl bat = (BatimentImpl) bdd.get(idBat);
     SalleImpl salle = (SalleImpl) bdd.get(idSalle);
@@ -104,12 +104,12 @@ public class GestionSalleImpl implements GestionSalle {
     bat.removeSalle(idSalle);
     return (bdd.update(idSalle, salle) && bdd.update(idBat, bat));
   }
-  
+
   public HashMap<String, Salle> afficherSallesDeBatiment(String idbat) {
     BatimentImpl salle = (BatimentImpl) bdd.get(idbat);
     HashMap<String, Salle> map = new HashMap<String, Salle>();
-    for(String s: salle.getSalles()) {
-      map.put(s, (Salle)bdd.get(s));
+    for (String s : salle.getSalles()) {
+      map.put(s, (Salle) bdd.get(s));
     }
     return map;
   }
@@ -135,30 +135,30 @@ public class GestionSalleImpl implements GestionSalle {
     }
     return liste;
   }
-  
-//  public boolean ajouterMaterielASalle(String idMat, String idSalle) {
-//    SalleImpl salle = (SalleImpl) bdd.get(idSalle);
-//    MaterielImpl mat = (MaterielImpl) bdd.get(idMat);
-//    salle.addMateriel(idMat);
-//    mat.setIdSalle(idSalle);
-//    return (bdd.update(idSalle, salle) && bdd.update(idMat, mat));
-//  }
-//
-//  
-//  public boolean retirerMaterielASalle(String idMat, String idSalle) {
-//    SalleImpl salle = (SalleImpl) bdd.get(idSalle);
-//    MaterielImpl mat = (MaterielImpl) bdd.get(idMat);
-//    mat.setIdSalle("");
-//    mat.freeMateriel(new GregorianCalendar());
-//    salle.removeMateriel(idMat);
-//    return (bdd.update(idSalle, salle) && bdd.update(idMat, mat));
-//  }
-  
+
+  // public boolean ajouterMaterielASalle(String idMat, String idSalle) {
+  // SalleImpl salle = (SalleImpl) bdd.get(idSalle);
+  // MaterielImpl mat = (MaterielImpl) bdd.get(idMat);
+  // salle.addMateriel(idMat);
+  // mat.setIdSalle(idSalle);
+  // return (bdd.update(idSalle, salle) && bdd.update(idMat, mat));
+  // }
+  //
+  //
+  // public boolean retirerMaterielASalle(String idMat, String idSalle) {
+  // SalleImpl salle = (SalleImpl) bdd.get(idSalle);
+  // MaterielImpl mat = (MaterielImpl) bdd.get(idMat);
+  // mat.setIdSalle("");
+  // mat.freeMateriel(new GregorianCalendar());
+  // salle.removeMateriel(idMat);
+  // return (bdd.update(idSalle, salle) && bdd.update(idMat, mat));
+  // }
+
   public HashMap<String, Materiel> afficherMaterielDeSalle(String idSalle) {
     SalleImpl salle = (SalleImpl) bdd.get(idSalle);
     HashMap<String, Materiel> map = new HashMap<String, Materiel>();
-    for(String s: salle.getMateriauxFixes()) {
-      map.put(s, (Materiel)bdd.get(s));
+    for (String s : salle.getMateriauxFixes()) {
+      map.put(s, (Materiel) bdd.get(s));
     }
     return map;
   }
@@ -167,23 +167,23 @@ public class GestionSalleImpl implements GestionSalle {
     SalleImpl salle = (SalleImpl) bdd.get(idSalle);
     MaterielImpl mat;
     ReservationImpl res;
-    for(String s:salle.getMateriauxFixes()) {
-      
+    for (String s : salle.getMateriauxFixes()) {
+
       mat = (MaterielImpl) bdd.get(s);
       mat.freeMateriel(new GregorianCalendar());
       bdd.update(s, mat);
     }
-    if(salle.getIdBat() != "") {
+    if (salle.getIdBat() != "") {
       retirerSalleABatiment(idSalle, salle.getIdBat());
     }
-    for(String s:listeDesClefs) {
+    for (String s : listeDesClefs) {
       if (s.charAt(0) == 'R') {
         res = (ReservationImpl) bdd.get(s);
-        if(res.getIdSalle().equals(idSalle)) {
+        if (res.getIdSalle().equals(idSalle)) {
           removeReservation(s);
-//          for(String m:res.getMateriauxMobiles()) {
-//            res.retirerMaterielMobile(m);
-//          }
+          // for(String m:res.getMateriauxMobiles()) {
+          // res.retirerMaterielMobile(m);
+          // }
         }
       }
     }
@@ -194,13 +194,13 @@ public class GestionSalleImpl implements GestionSalle {
   // pour les Materiaux //
   // --------------------------------------------------------------------//
 
-  public boolean creationMateriaux(String codeMateriel, String nomMateriel,
-      String descrMateriel, double tarif) {
+  public boolean creationMateriaux(String codeMateriel, String nomMateriel, String descrMateriel,
+      double tarif) {
     Materiel s = factSalle.createMateriel(codeMateriel, nomMateriel, descrMateriel, tarif);
     String key = bdd.put(s);
     return listeDesClefs.add(key);
   }
-  
+
 
   public HashMap<String, Materiel> affichageMateriaux(Calendar cd, Calendar cf) {
     HashMap<String, Materiel> liste = new HashMap<String, Materiel>();
@@ -208,31 +208,32 @@ public class GestionSalleImpl implements GestionSalle {
     for (String s : listeDesClefs) {
       if (s.charAt(0) == 'M') {
         mat = (MaterielImpl) bdd.get(s);
-        if(mat.getType()== TypeMateriel.FIXE) {//indispo apres date
-          if((mat.getDateDeChangement().compareTo(cd) >= 0) && (mat.getDateDeChangement().compareTo(cf) >= 0)) {
-            liste.put(s,mat);
+        if (mat.getType() == TypeMateriel.FIXE) {// indispo apres date
+          if ((mat.getDateDeChangement().compareTo(cd) >= 0)
+              && (mat.getDateDeChangement().compareTo(cf) >= 0)) {
+            liste.put(s, mat);
           }
-        }
-        else if(mat.getType()== TypeMateriel.MOBILE) {//indispo jusqu'a date
-          if((mat.getDateDeChangement().compareTo(cd) <= 0) && (mat.getDateDeChangement().compareTo(cf) <= 0)) {
-            liste.put(s,mat);
+        } else if (mat.getType() == TypeMateriel.MOBILE) {// indispo jusqu'a date
+          if ((mat.getDateDeChangement().compareTo(cd) <= 0)
+              && (mat.getDateDeChangement().compareTo(cf) <= 0)) {
+            liste.put(s, mat);
           }
         }
       }
     }
     return liste;
   }
-  
+
   public void fixerMat(Calendar cd, String idSalle, String idMat) {
     MaterielImpl mat = (MaterielImpl) bdd.get(idMat);
     SalleImpl salle = (SalleImpl) bdd.get(idSalle);
     mat.fixMateriel(cd, idSalle);
-    salle.addMateriel(idMat); 
+    salle.addMateriel(idMat);
     ReservationImpl r;
-    for(String s: listeDesClefs) {
+    for (String s : listeDesClefs) {
       if (s.charAt(0) == 'R') {
         r = (ReservationImpl) bdd.get(s);
-        if(r.getIdSalle().equals(idSalle)) {
+        if (r.getIdSalle().equals(idSalle)) {
           r.retirerMaterielMobile(idMat);
         }
       }
@@ -241,48 +242,48 @@ public class GestionSalleImpl implements GestionSalle {
 
   public void libererMat(Calendar cd, String idSalle, String idMat) {
     MaterielImpl mat = (MaterielImpl) bdd.get(idMat);
-    if(mat.getType() == TypeMateriel.FIXE) {
+    if (mat.getType() == TypeMateriel.FIXE) {
       SalleImpl salle = (SalleImpl) bdd.get(idSalle);
       mat.freeMateriel(cd);
       salle.removeMateriel(idMat);
       ReservationImpl r;
-      for(String s: listeDesClefs) {
+      for (String s : listeDesClefs) {
         if (s.charAt(0) == 'R') {
           r = (ReservationImpl) bdd.get(s);
-          if(r.getIdSalle().equals(idSalle)) {
+          if (r.getIdSalle().equals(idSalle)) {
             r.ajoutDansListeMateriauxMobile(idMat);
           }
         }
       }
     }
-    
+
   }
-  
+
   public void removeMateriaux(String idMat) {
     MaterielImpl mat = (MaterielImpl) bdd.get(idMat);
-    if(mat.getType() == TypeMateriel.FIXE) {
+    if (mat.getType() == TypeMateriel.FIXE) {
       libererMat(new GregorianCalendar(), mat.getIdSalle(), idMat);
-    }
-    else {
+    } else {
       mat.materielARetirer();
     }
-    //return (bdd.remove(idSalle) || listeDesClefs.remove(idSalle));
+    // return (bdd.remove(idSalle) || listeDesClefs.remove(idSalle));
   }
 
   // --------------------------------------------------------------------//
   // pour les Reservations //
   // --------------------------------------------------------------------//
-  
-  public String creationReservation(String salleReservee, Calendar dateDebutReserve, Calendar dateFinReserve,
-      String idClient) {
-    Reservation r = factSalle.createReservation(salleReservee, dateDebutReserve, dateFinReserve, idClient);
+
+  public String creationReservation(String salleReservee, Calendar dateDebutReserve,
+      Calendar dateFinReserve, String idClient) {
+    Reservation r =
+        factSalle.createReservation(salleReservee, dateDebutReserve, dateFinReserve, idClient);
     String key = bdd.put(r);
-    if(!key.equals("err")) {
+    if (!key.equals("err")) {
       listeDesClefs.add(key);
-    } 
+    }
     return key;
   }
-  
+
   public HashMap<String, Reservation> affichageReservation() {
     HashMap<String, Reservation> liste = new HashMap<String, Reservation>();
     for (String s : listeDesClefs) {
@@ -292,19 +293,17 @@ public class GestionSalleImpl implements GestionSalle {
     }
     return liste;
   }
-  
+
   public boolean removeReservation(String idReservation) {
     return (bdd.remove(idReservation) && listeDesClefs.remove(idReservation));
   }
-  
-  
-  
-  
+
+
+
   public BaseDeDonnee getBdd() {
     return bdd;
   }
-  
-  
-  
-  
+
+
+
 }

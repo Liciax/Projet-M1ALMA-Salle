@@ -145,7 +145,7 @@ public class tempInterfaceConsole implements InterfaceGraphique {
   public static SalleImpl getSalleDeKey(String key) {
     return (SalleImpl) instance.get(key);
   }
-  
+
   public static List<String> affichageMaterielDeSalle(String idSalle) {
     HashMap<String, Materiel> liste = instance.afficherMaterielDeSalle(idSalle);
     List<String> resultat = new ArrayList<String>();
@@ -224,7 +224,7 @@ public class tempInterfaceConsole implements InterfaceGraphique {
     }
     return resultat;
   }
-  
+
   public static List<String> affichageSallesDeBatiment(String idbat) {
     HashMap<String, Salle> liste = instance.afficherSallesDeBatiment(idbat);
     List<String> resultat = new ArrayList<String>();
@@ -240,12 +240,12 @@ public class tempInterfaceConsole implements InterfaceGraphique {
     }
     return resultat;
   }
-  
+
   public static BatimentImpl getBatimentDeKey(String key) {
     return (BatimentImpl) instance.get(key);
   }
-  
-  
+
+
 
   public static boolean retirerBatiment(String idBat) {
     return instance.removeBatiment(idBat);
@@ -280,28 +280,28 @@ public class tempInterfaceConsole implements InterfaceGraphique {
   public static void libererMat(Calendar cd, String idSalle, String idMat) {
     instance.libererMat(cd, idSalle, idMat);
   }
-  
+
   public static void fixerMat(Calendar cd, String idSalle, String idMat) {
     instance.fixerMat(cd, idSalle, idMat);
   }
-  
+
   public static void retirerMateriel(String idMat) {
     instance.removeMateriaux(idMat);
   }
-  
-  
+
+
   public static MaterielImpl getMaterielDeKey(String key) {
     return (MaterielImpl) instance.get(key);
   }
 
-// ((BatimentImpl) entree.getValue())
+  // ((BatimentImpl) entree.getValue())
 
-// public static void main(String[] args) {
-// creationAdresse(0, null, 0, null, null);
-// //affichageAdresses();
-// creationBatiment(affichageAdresses().get(0));
-// //affichageBatiments();
-//
-// }
+  // public static void main(String[] args) {
+  // creationAdresse(0, null, 0, null, null);
+  // //affichageAdresses();
+  // creationBatiment(affichageAdresses().get(0));
+  // //affichageBatiments();
+  //
+  // }
 
 }

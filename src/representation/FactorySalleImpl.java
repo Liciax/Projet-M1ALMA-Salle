@@ -30,8 +30,8 @@ public class FactorySalleImpl implements FactorySalle {
   }// retirer idDemandeur?
 
 
-  public Materiel createMateriel(String codeMateriel, String nomMateriel,
-      String descrMateriel, double tarif) {
+  public Materiel createMateriel(String codeMateriel, String nomMateriel, String descrMateriel,
+      double tarif) {
     Materiel mat = new MaterielImpl(codeMateriel, nomMateriel, descrMateriel, tarif);
     return mat;
   }

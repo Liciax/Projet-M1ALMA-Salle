@@ -21,7 +21,7 @@ public class TableDeMaterielTest {
   @Before
   public void setUp() throws Exception {
     tm = new TableDeMateriel();
-    materiel = new MaterielImpl( "m1", "tableau", "à craie", 50);
+    materiel = new MaterielImpl("m1", "tableau", "à craie", 50);
     key = tm.put(materiel);
   }
 
@@ -33,14 +33,14 @@ public class TableDeMaterielTest {
   @Test
   public void testContainsKey() {
     assertTrue(true == tm.containsKey(key));
-    Materiel mat2 = new MaterielImpl( "m2", "vaisselle", "en porcelaine", 10);
+    Materiel mat2 = new MaterielImpl("m2", "vaisselle", "en porcelaine", 10);
     String key2 = tm.put(mat2);
     assertTrue(true == tm.containsKey(key2));
   }
 
   @Test
   public void testPut() {
-    Materiel mat2 = new MaterielImpl( "m2", "vaisselle", "en porcelaine", 10);
+    Materiel mat2 = new MaterielImpl("m2", "vaisselle", "en porcelaine", 10);
     String key2 = tm.put(mat2);
     assert tm.getTableMateriel().containsValue(mat2);
     assert tm.getTableMateriel().containsKey(key2);
@@ -58,7 +58,7 @@ public class TableDeMaterielTest {
 
   @Test
   public void testUpdate() {
-    Materiel mat2 = new MaterielImpl( "m2", "vaisselle", "en porcelaine", 10);
+    Materiel mat2 = new MaterielImpl("m2", "vaisselle", "en porcelaine", 10);
     boolean res = tm.update(key, mat2);
     assert res == true;
     assert tm.containsValue(mat2);
@@ -66,7 +66,7 @@ public class TableDeMaterielTest {
 
   @Test
   public void testRemove() {
-    Materiel mat2 = new MaterielImpl( "m2", "vaisselle", "en porcelaine", 10);
+    Materiel mat2 = new MaterielImpl("m2", "vaisselle", "en porcelaine", 10);
     String key2 = tm.put(mat2);
     tm.remove(key2);
     assert tm.containsKey(key2) == false;
