@@ -35,6 +35,10 @@ public class MaterielImpl implements Materiel {
     this.dateDeChangement = c;
     this.idSalle = "";
   }
+  
+  public void materielARetirer() {
+    this.type = TypeMateriel.A_DETRUIRE;
+  }
 
 
 

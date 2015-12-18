@@ -5,6 +5,7 @@ package representation;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -135,15 +136,22 @@ public class GestionSalleImpl implements GestionSalle {
 
   
   public boolean retirerMaterielASalle(String idMat, String idSalle) {
-    BatimentImpl bat = (BatimentImpl) bdd.get(idBat);
     SalleImpl salle = (SalleImpl) bdd.get(idSalle);
-    salle.setIdBat("");
-    bat.removeSalle(idSalle);
-    return (bdd.update(idSalle, salle) && bdd.update(idBat, bat));
+    MaterielImpl mat = (MaterielImpl) bdd.get(idMat);
+    mat.setIdSalle("");
+    mat.freeMateriel(new GregorianCalendar());
+    salle.removeMateriel(idMat);
+    return (bdd.update(idSalle, salle) && bdd.update(idMat, mat));
   }
 
   public boolean removeSalle(String idSalle) {
     SalleImpl salle = (SalleImpl) bdd.get(idSalle);
+    MaterielImpl mat;
+    for(String s:salle.getMateriauxFixes()) {
+      mat = (MaterielImpl) bdd.get(s);
+      mat.freeMateriel(new GregorianCalendar());
+      bdd.update(s, mat);
+    }
     retirerSalleABatiment(idSalle, salle.getIdBat());
     return (bdd.remove(idSalle) || listeDesClefs.remove(idSalle));
   }
@@ -217,9 +225,14 @@ public class GestionSalleImpl implements GestionSalle {
     
   }
   
-  public boolean removeMateriaux(String idMat) {
-    MaterielImpl salle = (MaterielImpl) bdd.get(idMat);
-    retirerSalleABatiment(idSalle, salle.getIdBat());
-    return (bdd.remove(idSalle) || listeDesClefs.remove(idSalle));
+  public void removeMateriaux(String idMat) {
+    MaterielImpl mat = (MaterielImpl) bdd.get(idMat);
+    if(mat.getType() == TypeMateriel.FIXE) {
+      libererMat(new GregorianCalendar(), mat.getIdSalle(), idMat);
+    }
+    else {
+      mat.materielARetirer();
+    }
+    //return (bdd.remove(idSalle) || listeDesClefs.remove(idSalle));
   }
 }
