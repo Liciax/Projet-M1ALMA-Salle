@@ -60,7 +60,7 @@ public class TableDeBatimentTest {
     Batiment bat2 = new BatimentImpl("A2");
     boolean res = tb.update(key, bat2);
     assert res == true;
-    assert tb.getTableBat().get(key) == bat2;
+    assert tb.containsValue(bat2);
   }
 
   @Test
