@@ -19,7 +19,7 @@ public interface FactorySalle {
 
 
   public Materiel createMateriel(String idSalle, String codeMateriel, String nomMateriel,
-      String descrMateriel);
+      String descrMateriel, double tarif);
 
 
   public Reservation createReservation(String salleReservee, Calendar dateDebutReserve,

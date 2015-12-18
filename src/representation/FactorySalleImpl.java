@@ -32,8 +32,8 @@ public class FactorySalleImpl implements FactorySalle {
 
 
   public Materiel createMateriel(String idSalle, String codeMateriel, String nomMateriel,
-      String descrMateriel) {
-    Materiel mat = new MaterielImpl(idSalle, codeMateriel, nomMateriel, descrMateriel);
+      String descrMateriel, double tarif) {
+    Materiel mat = new MaterielImpl(idSalle, codeMateriel, nomMateriel, descrMateriel, tarif);
     return mat;
   }
 
