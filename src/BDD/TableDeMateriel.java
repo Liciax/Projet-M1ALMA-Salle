@@ -6,6 +6,7 @@ package BDD;
 import java.util.Map;
 import java.util.TreeMap;
 
+import representation.Batiment;
 import representation.Materiel;
 
 /**
@@ -17,6 +18,9 @@ public class TableDeMateriel implements Table {
 
   private Map<String, Materiel> tableMateriel;
   
+  public TableDeMateriel() {
+    this.tableMateriel = new TreeMap<String, Materiel>();
+  }
   /* (non-Javadoc)
    * @see BDD.Table#containsKey(java.lang.String)
    */
@@ -73,6 +77,10 @@ public class TableDeMateriel implements Table {
   @Override
   public boolean remove(String key) {
     return (tableMateriel.remove(key) != null);
+  }
+
+  public Map<String, Materiel> getTableMateriel() {
+    return tableMateriel;
   }
 
 }
