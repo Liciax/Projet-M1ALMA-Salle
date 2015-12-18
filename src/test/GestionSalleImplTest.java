@@ -48,46 +48,68 @@ public class GestionSalleImplTest {
   public void testCreationAdresse() {
     Adresse a = new AdresseImpl(0, null, 0, null, null);
     gsi.creationAdresse(0, null, 0, null, null);
-    assert gsi.getBdd().containsValue(a);
+    assert gsi.getBdd().containsKey("A10001");
   }
 
   @Test
   public void testAffichageAdresse() {
+    Adresse a = new AdresseImpl(0, null, 0, null, null);
+    gsi.creationAdresse(0, null, 0, null, null);
+    assert gsi.affichageAdresse().containsKey("A10001");
   }
 
   @Test
   public void testRemoveAdresse() {
-    fail("Not yet implemented");
+    Adresse a = new AdresseImpl(0, null, 0, null, null);
+    gsi.creationAdresse(0, null, 0, null, null);
+    gsi.removeAdresse("A10001");
+    assert !gsi.getBdd().containsKey("A10001");
   }
 
   @Test
   public void testCreationBatiment() {
-    fail("Not yet implemented");
+    gsi.creationAdresse(0, null, 0, null, null);
+    gsi.creationBatiment("A10001");
+    assert gsi.getBdd().containsKey("B10001");
   }
 
   @Test
   public void testAffichageBatiment() {
-    fail("Not yet implemented");
+    gsi.creationAdresse(0, null, 0, null, null);
+    gsi.creationBatiment("A10001");
+    assert gsi.affichageAdresse().containsKey("B10001");
   }
 
   @Test
   public void testRemoveBatiment() {
-    fail("Not yet implemented");
+    gsi.creationAdresse(0, null, 0, null, null);
+    gsi.creationBatiment("A10001");
+    gsi.removeBatiment("B10001");
+    assert !gsi.getBdd().containsKey("B10001");
   }
 
   @Test
   public void testAjouterSalleABatiment() {
-    fail("Not yet implemented");
+    gsi.creationAdresse(0, null, 0, null, null);
+    gsi.creationBatiment("A10001");
+    gsi.creationSalle(0, 0, 0, null);
+    gsi.ajouterSalleABatiment("S10001", "B10001");
+    assert ((BatimentImpl)gsi.get("B10001")).getSalles().get(0).equals("S10001");
   }
 
   @Test
   public void testRetirerSalleABatiment() {
-    fail("Not yet implemented");
+    gsi.creationAdresse(0, null, 0, null, null);
+    gsi.creationBatiment("A10001");
+    gsi.creationSalle(0, 0, 0, null);
+    gsi.ajouterSalleABatiment("S10001", "B10001");
+    gsi.retirerSalleABatiment("S10001", "B10001");
+    assert ((BatimentImpl)gsi.get("B10001")).getSalles().size() == 0;
   }
 
   @Test
   public void testCreationSalle() {
-    fail("Not yet implemented");
+    assert gsi.creationSalle(0, 0, 0, null);
   }
 
   @Test

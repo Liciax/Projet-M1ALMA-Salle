@@ -8,6 +8,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import BDD.BaseDeDonnee;
 
@@ -103,6 +104,15 @@ public class GestionSalleImpl implements GestionSalle {
     bat.removeSalle(idSalle);
     return (bdd.update(idSalle, salle) && bdd.update(idBat, bat));
   }
+  
+  public HashMap<String, Salle> afficherSallesDeBatiment(String idbat) {
+    BatimentImpl salle = (BatimentImpl) bdd.get(idbat);
+    HashMap<String, Salle> map = new HashMap<String, Salle>();
+    for(String s: salle.getSalles()) {
+      map.put(s, (Salle)bdd.get(s));
+    }
+    return map;
+  }
 
 
   // --------------------------------------------------------------------//
@@ -142,6 +152,15 @@ public class GestionSalleImpl implements GestionSalle {
     mat.freeMateriel(new GregorianCalendar());
     salle.removeMateriel(idMat);
     return (bdd.update(idSalle, salle) && bdd.update(idMat, mat));
+  }
+  
+  public HashMap<String, Materiel> afficherMaterielDeSalle(String idSalle) {
+    SalleImpl salle = (SalleImpl) bdd.get(idSalle);
+    HashMap<String, Materiel> map = new HashMap<String, Materiel>();
+    for(String s: salle.getMateriauxFixes()) {
+      map.put(s, (Materiel)bdd.get(s));
+    }
+    return map;
   }
 
   public boolean removeSalle(String idSalle) {

@@ -14,6 +14,7 @@ import representation.Batiment;
 import representation.BatimentImpl;
 import representation.GestionSalleImpl;
 import representation.Materiel;
+import representation.MaterielImpl;
 import representation.Salle;
 import representation.SalleImpl;
 
@@ -141,8 +142,24 @@ public class tempInterfaceConsole implements InterfaceGraphique {
     return resultat;
   }
 
-  public static AdresseImpl getSalleDeKey(String key) {
-    return (AdresseImpl) instance.get(key);
+  public static SalleImpl getSalleDeKey(String key) {
+    return (SalleImpl) instance.get(key);
+  }
+  
+  public static List<String> affichageMaterielDeSalle(String idSalle) {
+    HashMap<String, Materiel> liste = instance.afficherMaterielDeSalle(idSalle);
+    List<String> resultat = new ArrayList<String>();
+    int i = 0;
+    for (Entry<String, Materiel> entree : liste.entrySet()) {
+      if (entree.getValue() != null) {
+        // System.out.println(i + ": ");
+        // affichageSalleUnique((SalleImpl)entree.getValue());
+        // System.out.println("####################");
+        i++;
+        resultat.add(entree.getKey());
+      }
+    }
+    return resultat;
   }
 
   public static boolean retirerSalle(String key) {
@@ -207,6 +224,28 @@ public class tempInterfaceConsole implements InterfaceGraphique {
     }
     return resultat;
   }
+  
+  public static List<String> affichageSallesDeBatiment(String idbat) {
+    HashMap<String, Salle> liste = instance.afficherSallesDeBatiment(idbat);
+    List<String> resultat = new ArrayList<String>();
+    int i = 0;
+    for (Entry<String, Salle> entree : liste.entrySet()) {
+      if (entree.getValue() != null) {
+        // System.out.println(i + ": ");
+        // affichageSalleUnique((SalleImpl)entree.getValue());
+        // System.out.println("####################");
+        i++;
+        resultat.add(entree.getKey());
+      }
+    }
+    return resultat;
+  }
+  
+  public static BatimentImpl getBatimentDeKey(String key) {
+    return (BatimentImpl) instance.get(key);
+  }
+  
+  
 
   public static boolean retirerBatiment(String idBat) {
     return instance.removeBatiment(idBat);
@@ -249,15 +288,20 @@ public class tempInterfaceConsole implements InterfaceGraphique {
   public static void retirerMateriel(String idMat) {
     instance.removeMateriaux(idMat);
   }
+  
+  
+  public static MaterielImpl getMaterielDeKey(String key) {
+    return (MaterielImpl) instance.get(key);
+  }
 
 // ((BatimentImpl) entree.getValue())
 
- public static void main(String[] args) {
- creationAdresse(0, null, 0, null, null);
- //affichageAdresses();
- creationBatiment(affichageAdresses().get(0));
- //affichageBatiments();
-
- }
+// public static void main(String[] args) {
+// creationAdresse(0, null, 0, null, null);
+// //affichageAdresses();
+// creationBatiment(affichageAdresses().get(0));
+// //affichageBatiments();
+//
+// }
 
 }
