@@ -16,6 +16,7 @@ import representation.GestionSalleImpl;
 import representation.Materiel;
 import representation.MaterielImpl;
 import representation.Reservation;
+import representation.ReservationImpl;
 import representation.Salle;
 import representation.SalleImpl;
 
@@ -317,6 +318,10 @@ public class tempInterfaceConsole implements InterfaceGraphique {
       }
     }
     return resultat;
+  }
+  
+  public static ReservationImpl getReservationDeKey(String key) {
+    return (ReservationImpl) instance.get(key);
   }
   
   public static boolean retirerReservation(String idReservation, String idDemandeur) {
