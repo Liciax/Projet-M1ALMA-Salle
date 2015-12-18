@@ -16,7 +16,7 @@ import representation.Reservation;
 public class TableDeBatiment implements Table {
 
   private Map<String, Batiment> tableBat;
-  
+
   /**
    * 
    */
@@ -24,7 +24,9 @@ public class TableDeBatiment implements Table {
     this.tableBat = new TreeMap<String, Batiment>();
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see BDD.Table#put(java.lang.Object)
    */
   @Override
@@ -42,8 +44,10 @@ public class TableDeBatiment implements Table {
     tableBat.put(valfin, (Batiment) value);
     return valfin;
   }
-  
-  /* (non-Javadoc)
+
+  /*
+   * (non-Javadoc)
+   * 
    * @see BDD.Table#containsKey(java.lang.String)
    */
   @Override
@@ -51,7 +55,9 @@ public class TableDeBatiment implements Table {
     return tableBat.containsKey(key);
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see BDD.Table#get(java.lang.String)
    */
   @Override
@@ -59,7 +65,9 @@ public class TableDeBatiment implements Table {
     return tableBat.get(key);
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see BDD.Table#ContainsValue(java.lang.Object)
    */
   @Override
@@ -68,7 +76,9 @@ public class TableDeBatiment implements Table {
   }
 
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see BDD.Table#update(java.lang.String, java.lang.Object)
    */
   @Override
@@ -76,7 +86,9 @@ public class TableDeBatiment implements Table {
     return (tableBat.put(key, (Batiment) newval) != null);
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see BDD.Table#remove(java.lang.String)
    */
   @Override

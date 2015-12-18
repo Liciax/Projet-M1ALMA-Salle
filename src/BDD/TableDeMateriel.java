@@ -17,11 +17,14 @@ public class TableDeMateriel implements Table {
 
 
   private Map<String, Materiel> tableMateriel;
-  
+
   public TableDeMateriel() {
     this.tableMateriel = new TreeMap<String, Materiel>();
   }
-  /* (non-Javadoc)
+
+  /*
+   * (non-Javadoc)
+   * 
    * @see BDD.Table#containsKey(java.lang.String)
    */
   @Override
@@ -29,7 +32,9 @@ public class TableDeMateriel implements Table {
     return tableMateriel.containsKey(key);
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see BDD.Table#put(java.lang.Object)
    */
   @Override
@@ -46,8 +51,10 @@ public class TableDeMateriel implements Table {
     tableMateriel.put(valfin, (Materiel) value);
     return valfin;
   }
-  
-  /* (non-Javadoc)
+
+  /*
+   * (non-Javadoc)
+   * 
    * @see BDD.Table#get(java.lang.String)
    */
   @Override
@@ -55,7 +62,9 @@ public class TableDeMateriel implements Table {
     return tableMateriel.get(key);
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see BDD.Table#ContainsValue(java.lang.Object)
    */
   @Override
@@ -63,7 +72,9 @@ public class TableDeMateriel implements Table {
     return tableMateriel.containsValue(value);
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see BDD.Table#update(java.lang.String, java.lang.Object)
    */
   @Override
@@ -71,7 +82,9 @@ public class TableDeMateriel implements Table {
     return (tableMateriel.put(key, (Materiel) newval) != null);
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see BDD.Table#remove(java.lang.String)
    */
   @Override

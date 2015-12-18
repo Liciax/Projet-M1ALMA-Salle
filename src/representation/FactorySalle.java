@@ -14,8 +14,8 @@ public interface FactorySalle {
   public Batiment createBatiment(String adresseBat);
 
 
-  public Demandeur createDemandeur(String nomDemandeur,
-      OrigineDemandeur origineDemandeur, TitreDemandeur titreDemandeur, String idAdresseDemandeur);
+  public Demandeur createDemandeur(String nomDemandeur, OrigineDemandeur origineDemandeur,
+      TitreDemandeur titreDemandeur, String idAdresseDemandeur);
 
 
   public Materiel createMateriel(String idSalle, String codeMateriel, String nomMateriel,

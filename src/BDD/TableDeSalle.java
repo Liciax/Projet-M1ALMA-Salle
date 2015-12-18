@@ -10,14 +10,14 @@ public class TableDeSalle implements Table {
 
 
   private Map<String, Salle> tableSalle;
-  
+
   /**
    * 
    */
   public TableDeSalle() {
     this.tableSalle = new TreeMap<String, Salle>();
   }
-  
+
   @Override
   public String put(Object value) {
     String valfin;
@@ -33,7 +33,7 @@ public class TableDeSalle implements Table {
     tableSalle.put(valfin, (Salle) value);
     return valfin;
   }
-  
+
   @Override
   public boolean containsKey(String key) {
     return tableSalle.containsKey(key);

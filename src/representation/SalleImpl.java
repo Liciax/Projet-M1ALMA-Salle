@@ -11,7 +11,7 @@ public class SalleImpl implements Salle {
   private String idBat;
   private int superficie;
   private String typeSalle;
-  private List<Materiel> materiauxFixes;
+  private List<String> materiauxFixes;
   private double tarif;
 
   public SalleImpl(int noEtage, int noSalle, String idBat, int superficie, String typeSalle) {
@@ -20,7 +20,7 @@ public class SalleImpl implements Salle {
     this.idBat = idBat;
     this.superficie = superficie;
     this.typeSalle = typeSalle;
-    this.materiauxFixes = new ArrayList<Materiel>();
+    this.materiauxFixes = new ArrayList<String>();
     // a calculer
     // this.tarif = tarif;
   }
@@ -50,7 +50,7 @@ public class SalleImpl implements Salle {
     return typeSalle;
   }
 
-  public List<Materiel> getMateriauxFixes() {
+  public List<String> getMateriauxFixes() {
     return materiauxFixes;
   }
 
@@ -58,6 +58,12 @@ public class SalleImpl implements Salle {
     return tarif;
   }
 
+  public void addMateriel(String idMat) {
+    materiauxFixes.add(idMat);
+  }
 
+  public void removeMateriel(String idMat) {
+    materiauxFixes.remove(idMat);
+  }
 
 }

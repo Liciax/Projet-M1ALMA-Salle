@@ -16,15 +16,17 @@ import representation.Salle;
 public class TableDeDemandeur implements Table {
 
   private Map<String, Demandeur> tableDemandeur;
-  
+
   /**
    * 
    */
   public TableDeDemandeur() {
     this.tableDemandeur = new TreeMap<String, Demandeur>();
   }
-  
-  /* (non-Javadoc)
+
+  /*
+   * (non-Javadoc)
+   * 
    * @see BDD.Table#put(java.lang.Object)
    */
   @Override
@@ -42,8 +44,10 @@ public class TableDeDemandeur implements Table {
     tableDemandeur.put(valfin, (Demandeur) value);
     return valfin;
   }
-  
-  /* (non-Javadoc)
+
+  /*
+   * (non-Javadoc)
+   * 
    * @see BDD.Table#containsKey(java.lang.String)
    */
   @Override
@@ -51,7 +55,9 @@ public class TableDeDemandeur implements Table {
     return tableDemandeur.containsKey(key);
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see BDD.Table#get(java.lang.String)
    */
   @Override
@@ -59,7 +65,9 @@ public class TableDeDemandeur implements Table {
     return tableDemandeur.get(key);
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see BDD.Table#ContainsValue(java.lang.Object)
    */
   @Override
@@ -68,7 +76,9 @@ public class TableDeDemandeur implements Table {
   }
 
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see BDD.Table#update(java.lang.String, java.lang.Object)
    */
   @Override
@@ -76,7 +86,9 @@ public class TableDeDemandeur implements Table {
     return (tableDemandeur.put(key, (Demandeur) newval) != null);
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see BDD.Table#remove(java.lang.String)
    */
   @Override
@@ -87,7 +99,7 @@ public class TableDeDemandeur implements Table {
   public Map<String, Demandeur> getTableDemandeur() {
     return tableDemandeur;
   }
-  
-  
+
+
 
 }

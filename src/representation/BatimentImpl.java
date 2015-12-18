@@ -12,7 +12,7 @@ public class BatimentImpl implements Batiment {
     this.idAdresse = idAdresse;
     this.salles = new ArrayList<String>();
   }
-  
+
   public BatimentImpl(String idAdresse, List<String> list) {
     this.idAdresse = idAdresse;
     this.salles = list;
