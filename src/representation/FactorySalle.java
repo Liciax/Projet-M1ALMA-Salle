@@ -18,7 +18,7 @@ public interface FactorySalle {
       TitreDemandeur titreDemandeur, String idAdresseDemandeur);
 
 
-  public Materiel createMateriel(String idSalle, String codeMateriel, String nomMateriel,
+  public Materiel createMateriel(String codeMateriel, String nomMateriel,
       String descrMateriel, double tarif);
 
 
