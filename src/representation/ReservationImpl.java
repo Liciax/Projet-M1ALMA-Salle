@@ -50,10 +50,16 @@ public class ReservationImpl implements Reservation {
 //    return materiauxMobiles;
 //  }
 
+  
+  public List<String> getMateriauxMobiles() {
+    return materiauxMobiles;
+  }
+  
   public void ajoutDansListeMateriauxMobile(String idMat) {
     materiauxMobiles.add(idMat);
   }
-  
+
+
   public boolean retirerMaterielMobile(String idMat) {
     return materiauxMobiles.remove(idMat);
   }

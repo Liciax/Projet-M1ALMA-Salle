@@ -2,6 +2,7 @@ package test;
 
 import static org.junit.Assert.*;
 
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map.Entry;
@@ -18,6 +19,8 @@ import representation.BatimentImpl;
 import representation.GestionSalleImpl;
 import representation.Materiel;
 import representation.MaterielImpl;
+import representation.Reservation;
+import representation.ReservationImpl;
 import representation.SalleImpl;
 import representation.TypeMateriel;
 
@@ -77,7 +80,7 @@ public class GestionSalleImplTest {
   public void testAffichageBatiment() {
     gsi.creationAdresse(0, null, 0, null, null);
     gsi.creationBatiment("A10001");
-    assert gsi.affichageAdresse().containsKey("B10001");
+    assert gsi.affichageBatiment().containsKey("B10001");
   }
 
   @Test
@@ -106,30 +109,41 @@ public class GestionSalleImplTest {
     gsi.retirerSalleABatiment("S10001", "B10001");
     assert ((BatimentImpl)gsi.get("B10001")).getSalles().size() == 0;
   }
+  
+  @Test
+  public void testAfficherSallesDeBatiment() {
+    gsi.creationAdresse(0, null, 0, null, null);
+    gsi.creationBatiment("A10001");
+    gsi.creationSalle(0, 0, 0, null);
+    gsi.ajouterSalleABatiment("S10001", "B10001");
+    assert gsi.afficherSallesDeBatiment("B10001").containsKey("S10001");
+  }
 
   @Test
   public void testCreationSalle() {
-    assert gsi.creationSalle(0, 0, 0, null);
+    gsi.creationSalle(0, 0, 0, null);
+    assert ((SalleImpl)gsi.get("S10001")).getNoEtage() ==0;
   }
 
   @Test
   public void testAffichageSalle() {
-    fail("Not yet implemented");
-  }
-
-  @Test
-  public void testAjouterMaterielASalle() {
-    fail("Not yet implemented");
-  }
-
-  @Test
-  public void testRetirerMaterielASalle() {
-    fail("Not yet implemented");
+    gsi.creationSalle(0, 0, 0, null);
+    assert gsi.affichageSalle().containsKey("S10001");
+    
   }
 
   @Test
   public void testRemoveSalle() {
-    fail("Not yet implemented");
+    gsi.creationSalle(0, 0, 0, null);
+    
+  }
+
+  @Test
+  public void testAfficherMaterielDeSalle() {
+    gsi.creationSalle(0, 0, 0, null);
+    gsi.creationMateriaux("ok", null, null, 0);
+    gsi.fixerMat(new GregorianCalendar(), "S10001", "M10001");
+    assert gsi.afficherMaterielDeSalle("S10001").containsKey("M10001");
   }
 
   @Test
@@ -195,5 +209,38 @@ public class GestionSalleImplTest {
     gsi.removeMateriaux("M10001");
     assert ((MaterielImpl)gsi.get("M10001")).getType() == TypeMateriel.A_DETRUIRE;
   }
+  
+  @Test
+  public void testCreationReservation() {
+    gsi.creationAdresse(0, null, 0, null, null);
+    gsi.creationBatiment("A10001");
+    gsi.creationSalle(0, 0, 0, null);
+    gsi.ajouterSalleABatiment("S10001", "B10001");
+    gsi.creationReservation("S10001", new GregorianCalendar(), new GregorianCalendar(), null);
+    assert ((ReservationImpl)gsi.get("R10001")).getIdSalle().equals("S10001");
+  }
+  
+  @Test
+  public void testaAffichageReservation() {
+    gsi.creationAdresse(0, null, 0, null, null);
+    gsi.creationBatiment("A10001");
+    gsi.creationSalle(0, 0, 0, null);
+    gsi.ajouterSalleABatiment("S10001", "B10001");
+    gsi.creationReservation("S10001", new GregorianCalendar(), new GregorianCalendar(), null);
+    assert gsi.affichageReservation().containsKey("R10001");
+  }
+  
+  @Test
+  public void testRetirerReservation() {
+    gsi.creationAdresse(0, null, 0, null, null);
+    gsi.creationBatiment("A10001");
+    gsi.creationSalle(0, 0, 0, null);
+    gsi.ajouterSalleABatiment("S10001", "B10001");
+    gsi.creationReservation("S10001", new GregorianCalendar(), new GregorianCalendar(), null);
+    gsi.removeReservation("R10001");
+    assert !gsi.affichageReservation().containsKey("R10001");
+  }
+
+
 
 }
