@@ -4,6 +4,7 @@
 package representation;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -128,8 +129,8 @@ public class GestionSalleImpl implements GestionSalle {
     SalleImpl salle = (SalleImpl) bdd.get(idSalle);
     MaterielImpl mat = (MaterielImpl) bdd.get(idMat);
     salle.addMateriel(idMat);
-    mat.addSalle(idSalle);
-    return (bdd.update(idSalle, salle) && bdd.update(idBat, bat));
+    mat.setIdSalle(idSalle);
+    return (bdd.update(idSalle, salle) && bdd.update(idMat, mat));
   }
 
   
@@ -151,24 +152,62 @@ public class GestionSalleImpl implements GestionSalle {
   // pour les Materiaux //
   // --------------------------------------------------------------------//
 
-  public String creationMateriaux(String idSalle, String codeMateriel, String nomMateriel,
+  public String creationMateriaux(String codeMateriel, String nomMateriel,
       String descrMateriel, double tarif) {
-    Materiel s = factSalle.createMateriel(idSalle, codeMateriel, nomMateriel, descrMateriel, tarif);
+    Materiel s = factSalle.createMateriel(codeMateriel, nomMateriel, descrMateriel, tarif);
     String key = bdd.put(s);
     listeDesClefs.add(key);
     return key;
   }
+  
 
-  public HashMap<String, Materiel> affichageMateriaux() {
+  public HashMap<String, Materiel> affichageMateriaux(Calendar cd, Calendar cf) {
     HashMap<String, Materiel> liste = new HashMap<String, Materiel>();
+    MaterielImpl mat;
     for (String s : listeDesClefs) {
       if (s.charAt(0) == 'M') {
-        liste.put(s, (Materiel) bdd.get(s));
+        mat = (MaterielImpl) bdd.get(s);
+        if(mat.getType()== TypeMateriel.FIXE) {//indispo apres date
+          if((mat.getDateDeChangement().compareTo(cd) >= 0) && (mat.getDateDeChangement().compareTo(cf) >= 0)) {
+            liste.put(s,mat);
+          }
+        }
+        else if(mat.getType()== TypeMateriel.MOBILE) {//indispo jusqu'a date
+          if((mat.getDateDeChangement().compareTo(cd) <= 0) && (mat.getDateDeChangement().compareTo(cf) <= 0)) {
+            liste.put(s,mat);
+          }
+        }
       }
     }
     return liste;
   }
+  
+  public void fixerMat(Calendar cd, String idSalle, String idMat) {
+    MaterielImpl mat = (MaterielImpl) bdd.get(idMat);
+    SalleImpl salle = (SalleImpl) bdd.get(idSalle);
+    mat.fixMateriel(cd, idSalle);
+    salle.addMateriel(idMat); 
+  }
 
+  public void libererMat(Calendar cd, String idSalle, String idMat) {
+    MaterielImpl mat = (MaterielImpl) bdd.get(idMat);
+    if(mat.getType() == TypeMateriel.FIXE) {
+      SalleImpl salle = (SalleImpl) bdd.get(idSalle);
+      mat.freeMateriel(cd);
+      salle.removeMateriel(idMat);
+      ReservationImpl r;
+      for(String s: listeDesClefs) {
+        if (s.charAt(0) == 'R') {
+          r = (ReservationImpl) bdd.get(s);
+          if(r.getIdSalle().equals(idSalle)) {
+            r.ajoutDansListeMateriauxMobile(idMat);
+          }
+        }
+      }
+    }
+    
+  }
+  
   public boolean removeMateriaux(String idMat) {
     MaterielImpl salle = (MaterielImpl) bdd.get(idMat);
     retirerSalleABatiment(idSalle, salle.getIdBat());
