@@ -57,8 +57,8 @@ public class TableDeReservation implements Table {
         if (a != 0) {
           return a;
         } else {
-          return e1.getValue().getHeureDebutReserve()
-              .compareTo(e2.getValue().getHeureDebutReserve());
+          return ((ReservationImpl) e1.getValue()).getHeureDebutReserve()
+              .compareTo(((ReservationImpl) e2.getValue()).getHeureDebutReserve());
         }
       }
     });
@@ -68,8 +68,8 @@ public class TableDeReservation implements Table {
     // même salle mais strictement avant la nouvelle reserv
     while ((i < entries.size() - 1)
         && ((((ReservationImpl) value).getIdSalle().equals(((ReservationImpl) entries.get(i)
-            .getValue()).getIdSalle())) || (((Reservation) value).getHeureDebutReserve().compareTo(
-            entries.get(i).getValue().getHeureFinReserve()) >= 0))) {
+            .getValue()).getIdSalle())) || (((ReservationImpl) value).getHeureDebutReserve().compareTo(
+            ((ReservationImpl) entries.get(i).getValue()).getHeureFinReserve()) >= 0))) {
 
       i++;// on avance jusqu'a trouver l'horaire de fin de reservation juste avant cette nouvelle
           // reservation
@@ -77,8 +77,8 @@ public class TableDeReservation implements Table {
     }
     if ((((ReservationImpl) value).getIdSalle() != ((ReservationImpl) entries.get(i).getValue())
         .getIdSalle())
-        || (((Reservation) value).getHeureFinReserve().compareTo(
-            entries.get(i).getValue().getHeureDebutReserve()) <= 0)) {
+        || (((ReservationImpl) value).getHeureFinReserve().compareTo(
+            ((ReservationImpl) entries.get(i).getValue()).getHeureDebutReserve()) <= 0)) {
       // pas de conflict ou pas de reservation
       // if (tableRes.isEmpty()) {
       // valfin = "R10001";
