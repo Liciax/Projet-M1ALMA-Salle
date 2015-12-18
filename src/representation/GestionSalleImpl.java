@@ -180,7 +180,8 @@ public class GestionSalleImpl implements GestionSalle {
       if (s.charAt(0) == 'R') {
         res = (ReservationImpl) bdd.get(s);
         if (res.getIdSalle().equals(idSalle)) {
-          removeReservation(s);
+          bdd.remove(s);
+          listeDesClefs.remove(s);
           // for(String m:res.getMateriauxMobiles()) {
           // res.retirerMaterielMobile(m);
           // }
@@ -294,8 +295,12 @@ public class GestionSalleImpl implements GestionSalle {
     return liste;
   }
 
-  public boolean removeReservation(String idReservation) {
-    return (bdd.remove(idReservation) && listeDesClefs.remove(idReservation));
+  public boolean removeReservation(String idReservation, String idDemandeur) {
+    if(((ReservationImpl)bdd.get(idReservation)).getIdClient().equals(idDemandeur)) {
+      return (bdd.remove(idReservation) && listeDesClefs.remove(idReservation));
+    } else {
+      return false;
+    }
   }
 
 

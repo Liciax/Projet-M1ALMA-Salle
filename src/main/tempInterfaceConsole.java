@@ -15,6 +15,7 @@ import representation.BatimentImpl;
 import representation.GestionSalleImpl;
 import representation.Materiel;
 import representation.MaterielImpl;
+import representation.Reservation;
 import representation.Salle;
 import representation.SalleImpl;
 
@@ -289,10 +290,36 @@ public class tempInterfaceConsole implements InterfaceGraphique {
     instance.removeMateriaux(idMat);
   }
 
-
   public static MaterielImpl getMaterielDeKey(String key) {
     return (MaterielImpl) instance.get(key);
   }
+  
+  // --------------------------------------------------------------------//
+  // pour les Reservations //
+  // --------------------------------------------------------------------//
+  
+  public static String creationReservation(String salleReservee, Calendar dateDebutReserve, Calendar dateFinReserve,
+      String idClient) {
+    return instance.creationReservation(salleReservee, dateDebutReserve, dateFinReserve, idClient);
+  }
+  
+  public static List<String> affichageReservations() {
+    HashMap<String, Reservation> liste = instance.affichageReservation();
+    List<String> resultat = new ArrayList<String>();
+    int i = 0;
+    for (Entry<String, Reservation> entree : liste.entrySet()) {
+      if (entree.getValue() != null) {
+        // System.out.println(i + ": ");
+        // affichageBatimentUnique((BatimentImpl)entree.getValue());
+        // System.out.println("####################");
+        i++;
+        resultat.add(entree.getKey());
+      }
+    }
+    return resultat;
+  }
+  
+  public static 
 
   // ((BatimentImpl) entree.getValue())
 
