@@ -187,6 +187,15 @@ public class GestionSalleImpl implements GestionSalle {
     SalleImpl salle = (SalleImpl) bdd.get(idSalle);
     mat.fixMateriel(cd, idSalle);
     salle.addMateriel(idMat); 
+    ReservationImpl r;
+    for(String s: listeDesClefs) {
+      if (s.charAt(0) == 'R') {
+        r = (ReservationImpl) bdd.get(s);
+        if(r.getIdSalle().equals(idSalle)) {
+          r.retirerMaterielMobile(idMat);
+        }
+      }
+    }
   }
 
   public void libererMat(Calendar cd, String idSalle, String idMat) {
