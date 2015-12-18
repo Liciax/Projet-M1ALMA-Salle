@@ -38,6 +38,12 @@ public class TableDeReservation implements Table {
   public String put(Object value) {
     String valfin;
 
+    if(tableRes.isEmpty()) {
+      valfin = "R10001";
+      tableRes.put(valfin, (Reservation) value);
+      return valfin;
+    }
+    
     final List<Entry<String, Reservation>> entries =
         new ArrayList<Entry<String, Reservation>>(tableRes.entrySet());
 
@@ -67,14 +73,14 @@ public class TableDeReservation implements Table {
     if ((((ReservationImpl) value).getIdSalle() != ((ReservationImpl) entries.get(i)).getIdSalle())
         || (((Reservation) value).getHeureFinReserve().compareTo(entries.get(i).getValue().getHeureDebutReserve()) >= 0)) {
       // pas de conflict ou pas de reservation
-      if (tableRes.isEmpty()) {
-        valfin = "R10001";
-      } else {
+//      if (tableRes.isEmpty()) {
+//        valfin = "R10001";
+//      } else {
         String val = ((TreeMap<String, Reservation>) tableRes).lastKey();
         val = val.substring(1);
         int newval = Integer.parseInt(val) + 1;
         valfin = "R" + newval;
-      }
+//      }
       tableRes.put(valfin, (Reservation) value);
     } else {
       valfin = "err";
