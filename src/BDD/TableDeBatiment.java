@@ -84,4 +84,8 @@ public class TableDeBatiment implements Table {
     return (tableBat.remove(key) != null);
   }
 
+  public Map<String, Batiment> getTableBat() {
+    return tableBat;
+  }
+
 }
