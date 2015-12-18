@@ -1,6 +1,7 @@
 package representation;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class MaterielImpl implements Materiel {
 
@@ -20,6 +21,7 @@ public class MaterielImpl implements Materiel {
     this.descrMateriel = descrMateriel;
     this.tarifMateriel = tarif;
     this.type = TypeMateriel.MOBILE;
+    this.dateDeChangement = new GregorianCalendar();
   }
   
   

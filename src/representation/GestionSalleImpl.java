@@ -154,7 +154,7 @@ public class GestionSalleImpl implements GestionSalle {
       bdd.update(s, mat);
     }
     retirerSalleABatiment(idSalle, salle.getIdBat());
-    return (bdd.remove(idSalle) || listeDesClefs.remove(idSalle));
+    return (bdd.remove(idSalle) && listeDesClefs.remove(idSalle));
   }
 
   // --------------------------------------------------------------------//
@@ -235,4 +235,14 @@ public class GestionSalleImpl implements GestionSalle {
     }
     //return (bdd.remove(idSalle) || listeDesClefs.remove(idSalle));
   }
+
+  
+  
+  public BaseDeDonnee getBdd() {
+    return bdd;
+  }
+  
+  
+  
+  
 }
